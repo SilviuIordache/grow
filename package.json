@@ -1,0 +1,43 @@
+{
+  "name": "documente-utile",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "dev": "npm run watch & npm start",
+    "build": "parcel build ./src/index.html --out-dir build/",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "parcel watch ./src/index.html --no-cache --out-dir build/",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SilviuIordache/documents.git"
+  },
+  "author": "Silviu Iordache",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SilviuIordache/documents/issues"
+  },
+  "homepage": "https://github.com/SilviuIordache/documents#readme",
+  "dependencies": {
+    "@babel/polyfill": "^7.10.1",
+    "compression": "^1.7.4",
+    "connect-history-api-fallback": "^1.6.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^3.23.0",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7",
+    "vue": "^2.6.11",
+    "vue-hot-reload-api": "^2.3.4",
+    "vue-router": "^3.4.3"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.1.2",
+    "parcel-bundler": "^1.12.4",
+    "pug": "^3.0.0",
+    "stylus": "^0.54.7",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
