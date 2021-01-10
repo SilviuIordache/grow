@@ -20,15 +20,11 @@
           .answer-container.mt-4.
             You selected {{ pillars[currentQuestion].rating }}
         .results-container(v-else)
-          //- span Results
-          //- div(v-for="index in pillars.length")
-          //-   span {{ pillars[index - 1].name }}: 
-          //-   span {{ pillars[index - 1].rating }}
           .chart-container
             canvas#resultsChart(width="600" height="600")
           .pillars-to-improve
             p The areas you should work to improve are:
-            p(v-for="pillar in improvePillars") {{ pillar.name }}
+            p(v-for="pillar in improvePillars") {{ pillar.name }}: {{ pillar.rating}}/10
 
 </template>
 
@@ -106,9 +102,7 @@ export default {
       })
     },
     generateImprovePillars() {
-      let sortedArray = this.pillars.sort((a, b) => {
-        a.rating - b.rating;
-      });
+      let sortedArray = this.pillars.sort((a, b) => a.rating - b.rating );
 
       this.improvePillars = sortedArray.slice(0, 3);
     },
@@ -120,7 +114,6 @@ export default {
     next() {
       if (this.currentQuestion < this.pillars.length - 1) {
         this.currentQuestion += 1;
-        //this.generateChart();
       } else {
         this.showResults = true;
         setTimeout(() => { this.generateChart() }, 0);
