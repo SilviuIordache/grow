@@ -6,7 +6,7 @@
           .chart-container
             canvas#resultsChart(width="600" height="600")
           .pillars-to-improve
-            p The areas you should work to improve are:
+            p For a happier life, these are the areas to improve:
             p(v-for="pillar in improvePillars") {{ pillar.name }}: {{ pillar.rating}}/10
           .restart-container
             button.btn.btn-primary(role="button" type="button" @click="restart()") Restart
