@@ -12,8 +12,9 @@
               label.form-check-label(for='inlineRadio1') {{ index }}
           .buttons-container.mt-4
             .nav-buttons
-              button.btn.btn-primary.mr-4(@click="back()" v-if="currentQuestion > 0") Back
-              button.btn.btn-primary(@click="next()" :disabled="!pillars[currentQuestion].rating")
+              button.btn.btn-primary.mr-4(v-if="currentQuestion > 0"   @click="back()" ).
+                Back
+              button.btn.btn-primary(role="button" type="button" @click="next()" :disabled="!pillars[currentQuestion].rating")
                 span(v-if="currentQuestion < pillars.length - 1") Next
                 span(v-else) Show Results
 
