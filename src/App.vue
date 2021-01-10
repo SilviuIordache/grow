@@ -11,10 +11,5 @@
     components: {
       'navigation-bar': NavigationBar
     },
-    mounted() {
-      this.$on('productAddedToCart', (product) => {
-        console.log(product);
-      })
-    }
   }
 </script>
