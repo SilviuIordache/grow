@@ -6,7 +6,7 @@
           p {{ currentQuestion + 1}} / {{ pillars.length }}
           p On a scale from 1 to 10, how would you rate your {{ pillars[currentQuestion].name }}?
           .form
-            .form-check.form-check-inline(v-for="index in 10" :key="index")
+            .form-check.form-check-inline.mr-2(v-for="index in 10" :key="index")
               input.form-check-input(type='radio' :value="index" v-model="pillars[currentQuestion].rating")
               label.form-check-label {{ index }}
           .buttons-container.mt-4
@@ -16,8 +16,9 @@
               button.btn.btn-primary(role="button" type="button" @click="next()" :disabled="!pillars[currentQuestion].rating")
                 span(v-if="currentQuestion < pillars.length - 1") Next
                 span(v-else) Show Results
-          .answer-container.mt-4.
-            You selected {{ pillars[currentQuestion].rating }}
+          .answer-container.mt-4
+            p(v-if="pillars[currentQuestion].rating === 0") Rate this area to continue
+            p(v-else) You rated {{ pillars[currentQuestion].name}} with {{ pillars[currentQuestion].rating }}/10
 </template>
 
 <script>
@@ -66,7 +67,6 @@ export default {
           color: 'rgba(232, 136, 72, 0.2)'
         },
       ],
-      improvePillars: [],
       currentQuestion: 0,
     }
   },
@@ -94,4 +94,8 @@ export default {
 
     .question-container
       min-width 30rem
+
+      .form-check
+        cursor pointer
+
 </style>
