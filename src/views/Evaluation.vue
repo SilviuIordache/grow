@@ -2,7 +2,7 @@
   .main.container
     .row
       .col-12.d-flex.justify-content-center
-        .question-container.mt-5
+        .question-container
           p {{ currentQuestion + 1}} / {{ pillars.length }}
           p On a scale from 1 to 10, how would you rate your {{ pillars[currentQuestion].name }}?
           .form
