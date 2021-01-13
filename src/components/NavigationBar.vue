@@ -1,6 +1,8 @@
 <template lang="pug">
-  .navbar.d-flex.justify-content-between.py-4.px-5
-    router-link(to="/") HOME
+  .navbar.d-flex.justify-content-start.py-4.px-5.mb-5
+    router-link(to="/") Home
+    router-link.ml-4(to="/goals") Goals
+
 </template>
 
 <script>
