@@ -5,16 +5,18 @@
         h1 Your Goals
     .row
       .col-4
-        form
-          ul
-            li
-              label Enter goal:
-              input
-            li
-              button Add
-        .list-label.mb-2 This is the title
-        draggable.list-group(v-model='myArray' group='people' @start='drag=true' @end='drag=false')
-          .list-group-item.drag-list-item.py-2.px-4(v-for='element in myArray' :key='element.id') {{ element }}
+        form.ml-4(method="POST"  @submit.prevent="")
+          .form-field
+            label(for='goal') Enter a new goal:
+            input#goal.ml-2(type='text' name='goal' v-model="newGoal")
+          .form-field
+            input(type="submit" name="submit" value="Add Goal" @click="addGoal()")
+
+        .list-label.mb-2.mt-5 General Goals
+          draggable.list-group(v-model='goals' group='people' @start='drag=true' @end='drag=false')
+            .list-group-item.drag-list-item.py-2.px-4.d-flex.justify-content-between.align-items-center(v-for='goal in goals' :key='goal.id')
+              span {{ goal }}
+              input(type="checkbox" :id="goal.id")
       .col-8
 
 </template>
@@ -27,14 +29,20 @@ export default {
   components: { draggable },
   data() {
     return {
-      myArray: ['do this', 'the other', 'another']
+      goals: ['Read a book'],
+      newGoal: ''
     }
   },
   mounted() {
 
   },
   methods: {
-  
+    addGoal() {
+      if(this.newGoal) {
+        this.goals.push(this.newGoal);
+        this.newGoal = '';
+      }
+    }
   }
 };
 </script>
