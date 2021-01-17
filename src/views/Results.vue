@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     getPillars() {
-      this.pillars = JSON.parse(localStorage.getItem('pillars', this.pillars));
+      this.pillars = JSON.parse(localStorage.getItem('pillars'));
     },
     generateChart() {
       let ctx = document.getElementById('resultsChart');
