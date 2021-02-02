@@ -5,10 +5,10 @@
         h1 Your Goals
     .row
       .col-4
-        form.ml-4(method="POST"  @submit.prevent="")
+        form(method="POST"  @submit.prevent="")
           .form-field
             label(for='goal') Enter a new goal:
-            input#goal.ml-2(type='text' name='goal' v-model="newGoalText")
+            input#goal.mb-2(type='text' name='goal' v-model="newGoalText")
           .form-field
             input(type="submit" name="submit" value="Add Goal" @click="addGoal()")
 
