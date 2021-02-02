@@ -1,15 +1,20 @@
 <template lang="pug">
   .main.container
-    .row
-      .col-12.d-flex.justify-content-center
+    .row.mb-5
+      .col-6.d-flex.justify-content-center
         .results-container
           .chart-container
             canvas#resultsChart(width="600" height="600")
-          .pillars-to-improve
-            p For a happier life, these are the areas to improve:
-            p(v-for="pillar in improvePillars") {{ pillar.name }}: {{ pillar.rating}}/10
-          .restart-container
-            button.btn.btn-primary(role="button" type="button" @click="restart()") Restart
+      .col-6.px-4.border-left
+        .pillars-to-improve
+          p Like an out of balance wheel, life can also grow out of balance when some areas are lacking.
+          p For a happier life, these are the areas to improve:
+          p(v-for="pillar in improvePillars") {{ pillar.name }}: {{ pillar.rating}}/10
+        .restart-container
+          button.btn.btn-primary(role="button" type="button" @click="restart()") Restart Evaluation
+          button.btn.btn-primary.ml-3(role="button" type="button" @click="goToGoals()") Set Goals for lacking areas
+
+            
 </template>
 
 <script>
@@ -54,6 +59,9 @@ export default {
     },
     restart() {
       this.$router.push('/evaluation')
+    },
+    goToGoals() {
+      this.$router.push('/goals')
     }
   }
 };
