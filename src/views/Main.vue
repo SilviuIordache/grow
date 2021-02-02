@@ -3,8 +3,7 @@
     .row
       .col-12
         h1 Grow
-        span Grow is a tool for evaluating your key life-areas.
-        span You do this through a quick 1-min quiz.
+        span Grow is a tool for evaluating your key life-areas. You do this through a quick 1-min quiz.
         p A way to evaluate and visualize your life-pillars is through a Wheel-of-Life evaluation tool.
 
         p It's said that a happy life is a balanced life. A person is happy when the pillars of life are in balance. 
