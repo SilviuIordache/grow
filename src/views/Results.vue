@@ -12,9 +12,7 @@
           p(v-for="pillar in improvePillars") {{ pillar.name }}: {{ pillar.rating}}/10
         .restart-container
           button.btn.btn-primary(role="button" type="button" @click="restart()") Restart Evaluation
-          button.btn.btn-primary.ml-3(role="button" type="button" @click="goToGoals()") Set Goals for lacking areas
-
-            
+          button.btn.btn-primary.ml-3(role="button" type="button" @click="goToGoals()") Set Goals for lacking areas 
 </template>
 
 <script>
@@ -58,6 +56,7 @@ export default {
       this.improvePillars = sortedArray.slice(0, 3);
     },
     restart() {
+      localStorage.removeItem('pillars');
       this.$router.push('/evaluation')
     },
     goToGoals() {

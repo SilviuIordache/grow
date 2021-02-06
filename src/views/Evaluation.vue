@@ -70,7 +70,17 @@ export default {
       currentQuestion: 0,
     }
   },
+  mounted() {
+    this.redirectIfCompleted();
+  },
   methods: {
+    redirectIfCompleted() {
+      const storedResults = JSON.parse(localStorage.getItem('pillars'));
+
+      if (storedResults) {
+        this.$router.push({ path: '/results' })
+      }
+    },
     back() {
       if(this.currentQuestion > 0) {
         this.currentQuestion -= 1;
