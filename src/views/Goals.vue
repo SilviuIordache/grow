@@ -23,11 +23,13 @@
 
 <script>
 import List from '../components/List.vue';
+import { pillarUpdate } from '../mixins/pillarUpdate.js'
 
 export default {
   components: { 
     'List': List
   },
+  mixins: [pillarUpdate],
   data() {
     return {
       pillars: [],
@@ -39,6 +41,11 @@ export default {
   },
   mounted() {
     this.getPillars();
+
+    this.$on('list:updated', (data) => {
+      const { pillar, goals} = data;
+      this.updatePillarGoals(pillar, goals)
+    })
   },
   methods: {
     addGoal() {
@@ -49,30 +56,13 @@ export default {
           completed: false
         }
 
-        const newPillars = this.pillars;
-
-        // find index element with the matching type
-        const index = newPillars.findIndex((pillar) => pillar.name === this.newGoal.category);
-
-        // grab the pillar
-        const updatedPillar = newPillars[index];
-
-        console.log(updatedPillar);
-
-        // update it's goals
-        updatedPillar.goals.push(goal);
-
-        // replace it with the old one
-        newPillars[index] = updatedPillar;
-
-        // update storage
-        localStorage.setItem('pillars', JSON.stringify(this.pillars));
+        const newGoals = this.pillars.find((pillar) => pillar.name === this.newGoal.category).goals;
+        newGoals.push(goal);
+  
+        this.updatePillarGoals(this.newGoal.category, newGoals);
 
         // reset form
-        this.newGoal = {
-          text: '',
-          category: ''
-        }
+        this.newGoal = {text: '', category: '' }
       }
     },
     getPillars() {
