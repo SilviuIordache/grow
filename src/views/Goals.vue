@@ -4,57 +4,83 @@
       .col-12
         h1 Your Goals
     .row
-      .col-4
+      .col-6
         form(method="POST"  @submit.prevent="")
           .form-field
-            label(for='goal') Enter a new goal:
-            input#goal.mb-2(type='text' name='goal' v-model="newGoalText")
+              label.mr-1(for='goal-text') Enter a new goal:
+              input#goal-text.mb-4(required type='text' name='goal' v-model="newGoal.text")
           .form-field
+              label.mr-1(for='goal-category') Choose a goal category:
+              select#goal-category.mb-2(required v-model="newGoal.category")
+                option(value="")  --- choose a pillar ---
+                option(v-for="pillar in pillars" :value="pillar.name") {{ pillar.name }}
+          .form-field.mt-4
             input(type="submit" name="submit" value="Add Goal" @click="addGoal()")
-
-        .list-label.mb-2.mt-5 General Goals
-          draggable.list-group(v-model='goals' group='people' @start='drag=true' @end='drag=false')
-            .list-group-item.drag-list-item.py-2.px-4.d-flex.justify-content-between.align-items-center(v-for='goal in goals' :key='goal.id')
-              span( :class="{ strike: goal.completed}") {{ goal.text }}
-              .buttons-container.d-flex.align-items-center.justify-content-between.ml-4
-                input(type="checkbox" :checked="goal.completed"  @change="goal.completed = !goal.completed")
-                i.far.fa-trash-alt.ml-3(@click="deleteGoal(goal.id)")
-      .col-8
+    .row
+      list(v-for="pillar in pillars" :pillar="pillar")
 
 </template>
 
 <script>
-import draggable from 'vuedraggable'
+import List from '../components/List.vue';
 
 export default {
-  components: { draggable },
+  components: { 
+    'List': List
+  },
   data() {
     return {
-      goals: [],
-      newGoalText: ''
+      pillars: [],
+      newGoal: {
+        text: '',
+        category: ''
+      }
     }
   },
   mounted() {
-    this.getGoals();
+    this.getPillars();
   },
   methods: {
     addGoal() {
-      if(this.newGoalText) {
-        const newGoal = {
+      if(this.newGoal.text) {
+        const goal = {
           id: Math.floor(Math.random()*90000) + 10000,
-          text: this.newGoalText,
+          text: this.newGoal.text,
           completed: false
         }
-        this.goals.push(newGoal);
-        localStorage.setItem('goals', JSON.stringify(this.goals));
-        this.newGoalText = '';
+
+        const newPillars = this.pillars;
+
+        // find index element with the matching type
+        const index = newPillars.findIndex((pillar) => pillar.name === this.newGoal.category);
+
+        // grab the pillar
+        const updatedPillar = newPillars[index];
+
+        console.log(updatedPillar);
+
+        // update it's goals
+        updatedPillar.goals.push(goal);
+
+        // replace it with the old one
+        newPillars[index] = updatedPillar;
+
+        // update storage
+        localStorage.setItem('pillars', JSON.stringify(this.pillars));
+
+        // reset form
+        this.newGoal = {
+          text: '',
+          category: ''
+        }
       }
     },
-    getGoals() {
-      const storedGoals = JSON.parse(localStorage.getItem('goals'));
-      if (storedGoals) {
-        this.goals = storedGoals
+    getPillars() {
+      const storedPillars = JSON.parse(localStorage.getItem('pillars'));
+      if (storedPillars) {
+        this.pillars = storedPillars;
       }
+      console.log(this.pillars)
     },
     deleteGoal(id) {
       this.goals = this.goals.filter(goal => goal.id != id);
@@ -64,7 +90,7 @@ export default {
 };
 </script>
 
-<style scoped lang="stylus">
+<style lang="stylus" scoped>
   .main
     color gray
 

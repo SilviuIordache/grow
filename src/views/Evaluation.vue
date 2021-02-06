@@ -29,42 +29,50 @@ export default {
         { 
           name: 'Love',
           rating: 0,
-          color: 'rgba(255, 99, 132, 0.2)'
+          color: 'rgba(255, 99, 132, 0.2)',
+          goals: []
         },
         {
           name: 'Finances',
           rating: 0,
-          color: 'rgba(75, 192, 192, 0.2)'
+          color: 'rgba(75, 192, 192, 0.2)',
+          goals: []
         },
         {
           name: 'Relationships',
           rating: 0,
-          color: 'rgba(255, 201, 54, 0.2)'
+          color: 'rgba(255, 201, 54, 0.2)',
+          goals: []
         },
         {
           name: 'Career',
           rating: 0,
-          color: 'rgba(31, 143, 255, 0.2)'
+          color: 'rgba(31, 143, 255, 0.2)',
+          goals: []
         },
         {
           name: 'Hobbies/Fun',
           rating: 0,
-          color: 'rgba(205, 130, 255, 0.2)'
+          color: 'rgba(205, 130, 255, 0.2)',
+          goals: []
         },
         {
           name: 'Health',
           rating: 0,
-          color: 'rgba(97, 232, 102, 0.2)'
+          color: 'rgba(97, 232, 102, 0.2)',
+          goals: []
         },
         {
           name: 'Mind',
           rating: 0,
-          color: 'rgba(72, 232, 224, 0.2)'
+          color: 'rgba(72, 232, 224, 0.2)',
+          goals: []
         },
         {
           name: 'Purpose',
           rating: 0,
-          color: 'rgba(232, 136, 72, 0.2)'
+          color: 'rgba(232, 136, 72, 0.2)',
+          goals: []
         },
       ],
       currentQuestion: 0,
