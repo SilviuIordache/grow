@@ -24,6 +24,7 @@
 <script>
 import List from '../components/List.vue';
 import { pillarUpdate } from '../mixins/pillarUpdate.js'
+import pillarStorage from '../utils/pillarStorage';
 
 export default {
   components: { 
@@ -66,14 +67,11 @@ export default {
       }
     },
     getPillars() {
-      const storedPillars = JSON.parse(localStorage.getItem('pillars'));
-      if (storedPillars) {
-        this.pillars = storedPillars;
-      }
+      this.pillars = pillarStorage.get();
     },
     deleteGoal(id) {
       this.goals = this.goals.filter(goal => goal.id != id);
-      localStorage.setItem('goals', JSON.stringify(this.goals));
+      // to update list
     }
   }
 };

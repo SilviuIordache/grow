@@ -17,6 +17,7 @@
 
 <script>
 import Chart from 'chart.js';
+import pillarStorage from '../utils/pillarStorage.js';
 
 export default {
   data() {
@@ -25,15 +26,14 @@ export default {
       improvePillars: [],
     }
   },
+  created() {
+    this.pillars = pillarStorage.get();
+  },
   mounted() {
-    this.getPillars();
     this.generateChart();
     this.generateImprovePillars();
   },
   methods: {
-    getPillars() {
-      this.pillars = JSON.parse(localStorage.getItem('pillars'));
-    },
     generateChart() {
       let ctx = document.getElementById('resultsChart');
   
@@ -56,7 +56,7 @@ export default {
       this.improvePillars = sortedArray.slice(0, 3);
     },
     restart() {
-      localStorage.removeItem('pillars');
+      pillarStorage.delete();
       this.$router.push('/evaluation')
     },
     goToGoals() {
