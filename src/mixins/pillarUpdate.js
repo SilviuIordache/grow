@@ -8,9 +8,7 @@ export const pillarUpdate = {
 
       // grab the pillar to be changed
       const updatedPillar = pillars[index];
-
-      console.log(updatedPillar);
-
+      
       // update it's goals
       updatedPillar.goals = newGoals;
 

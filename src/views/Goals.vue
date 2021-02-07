@@ -7,13 +7,13 @@
       .col-6
         form(method="POST"  @submit.prevent="")
           .form-field
-              label.mr-1(for='goal-text') Enter a new goal:
-              input#goal-text.mb-4(required type='text' name='goal' v-model="newGoal.text")
+            label.mr-1(for='goal-text') Enter a new goal:
+            input#goal-text.mb-4(required type='text' name='goal' v-model="newGoal.text")
           .form-field
-              label.mr-1(for='goal-category') Choose a goal category:
-              select#goal-category.mb-2(required v-model="newGoal.category")
-                option(value="")  --- choose a pillar ---
-                option(v-for="pillar in pillars" :value="pillar.name") {{ pillar.name }}
+            label.mr-1(for='goal-category') Choose a goal category:
+            select#goal-category.mb-2(required v-model="newGoal.category")
+              option(value="")  --- choose a pillar ---
+              option(v-for="pillar in pillars" :value="pillar.name") {{ pillar.name }}
           .form-field.mt-4
             input(type="submit" name="submit" value="Add Goal" @click="addGoal()")
     .row
@@ -70,7 +70,6 @@ export default {
       if (storedPillars) {
         this.pillars = storedPillars;
       }
-      console.log(this.pillars)
     },
     deleteGoal(id) {
       this.goals = this.goals.filter(goal => goal.id != id);
