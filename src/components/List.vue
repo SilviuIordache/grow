@@ -7,12 +7,10 @@
 
 <script>
 import draggable from 'vuedraggable';
-import { pillarUpdate } from '../mixins/pillarUpdate.js'
 import ListItem from './ListItem.vue';
 
 export default {
   components: { draggable, ListItem },
-  mixins: [pillarUpdate],
   props: ['pillar'],
   data() {
     return {

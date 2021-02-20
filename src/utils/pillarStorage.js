@@ -19,7 +19,7 @@ class PillarStorage {
     this.storage.setItem('pillars', JSON.stringify(newPillars));
   }
 
-  delete() {
+  wipe() {
     this.storage.removeItem('pillars');
   }
 }
