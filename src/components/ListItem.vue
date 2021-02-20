@@ -11,12 +11,7 @@
 </template>
 
 <script>
-import draggable from 'vuedraggable';
-import { pillarUpdate } from '../mixins/pillarUpdate.js'
-
 export default {
-  components: { draggable },
-  mixins: [pillarUpdate],
   props: {
     goal: {
       type: Object,
@@ -37,18 +32,11 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  .main
-    color gray
-    .list-style-custom
-      min-height 15rem
-      min-width 10rem
-      border 1px solid rgba(135, 135, 135, 0.2)
-      background-color rgba(135, 135, 135, 0.4)
-      .drag-list-item
-        cursor pointer
-        min-width 10rem
-        margin-bottom -1px
-        border 1px solid rgba(135, 135, 135, 0.2)
-        .strike
-          text-decoration: line-through
+  .drag-list-item
+    cursor pointer
+    min-width 10rem
+    margin-bottom -1px
+    border 1px solid rgba(135, 135, 135, 0.2)
+    .strike
+      text-decoration: line-through
 </style>

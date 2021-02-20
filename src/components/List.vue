@@ -48,11 +48,4 @@ export default {
       min-width 10rem
       border 1px solid rgba(135, 135, 135, 0.2)
       background-color rgba(135, 135, 135, 0.4)
-      .drag-list-item
-        cursor pointer
-        min-width 10rem
-        margin-bottom -1px
-        border 1px solid rgba(135, 135, 135, 0.2)
-        .strike
-          text-decoration: line-through
 </style>
