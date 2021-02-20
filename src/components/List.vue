@@ -1,5 +1,7 @@
 <template lang="pug">
-  .col-3.list-label.mb-2.mt-5(ref='el') {{ name }}
+  .col-3.list-label.mb-2.mt-5(ref='el')
+    span.mr-1 {{ name }}
+    span ({{ pillar.rating}}/10)
     draggable.list-group.list-style-custom(v-model='goals' group='all-goals' @start='drag=true' @end='drag=false')
       List-Item(v-for='goal in goals' :goal="goal")
 
