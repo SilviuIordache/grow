@@ -56,7 +56,7 @@ export default {
       this.improvePillars = sortedArray.slice(0, 3);
     },
     restart() {
-      pillarStorage.delete();
+      pillarStorage.wipe();
       this.$router.push('/evaluation')
     },
     goToGoals() {
