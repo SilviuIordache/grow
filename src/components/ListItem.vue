@@ -1,41 +1,33 @@
 <template lang="pug">
-  .col-3.list-label.mb-2.mt-5 {{ name }}
-    draggable.list-group.list-style-custom(v-model='goals' group='all-goals' @start='drag=true' @end='drag=false')
-      List-Item(v-for='goal in goals' :goal="goal")
-
+.list-group-item.drag-list-item.py-2.px-4.d-flex.justify-content-between.align-items-center(:key='goal.id')
+  span( :class="{ strike: goal.completed}") {{ goal.text }}
+  .buttons-container.d-flex.align-items-center.justify-content-between.ml-4(v-if="")
+    input(type="checkbox" :checked="goal.completed"  @change="goal.completed = !goal.completed")
+    i.far.fa-trash-alt.ml-3(@click="deleteGoal(goal.id)")
 </template>
 
 <script>
 import draggable from 'vuedraggable';
 import { pillarUpdate } from '../mixins/pillarUpdate.js'
-import ListItem from './ListItem.vue';
 
 export default {
-  components: { draggable, ListItem },
+  components: { draggable },
   mixins: [pillarUpdate],
-  props: ['pillar'],
-  data() {
-    return {
-      name: '',
-      goals: [],
+  props: {
+    goal: {
+      type: Object,
+      required: true
     }
   },
-  mounted() {
-    this.name = this.pillar.name;
-    this.goals = this.pillar.goals;
+  data() {
+    return {
+      buttonsVisible: false,
+    }
   },
   methods: {
     deleteGoal(id) {
     }
   },
-  watch: {
-    goals: function () {
-      this.$parent.$emit('list:updated', {
-        pillar: this.pillar.name,
-        goals: this.goals
-      })
-    },
-  }
 };
 
 </script>
