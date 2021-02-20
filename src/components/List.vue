@@ -1,5 +1,5 @@
 <template lang="pug">
-  .col-3.list-label.mb-2.mt-5 {{ name }}
+  .col-3.list-label.mb-2.mt-5(ref='el') {{ name }}
     draggable.list-group.list-style-custom(v-model='goals' group='all-goals' @start='drag=true' @end='drag=false')
       List-Item(v-for='goal in goals' :goal="goal")
 
@@ -21,8 +21,13 @@ export default {
   mounted() {
     this.name = this.pillar.name;
     this.goals = this.pillar.goals;
+    this.setListColor();
   },
   methods: {
+    setListColor() {
+      const elem = this.$refs.el;
+      elem.style.color = this.pillar.color;
+    }
   },
   watch: {
     goals: function () {
