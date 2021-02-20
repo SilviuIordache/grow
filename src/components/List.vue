@@ -23,8 +23,6 @@ export default {
     this.goals = this.pillar.goals;
   },
   methods: {
-    deleteGoal(id) {
-    }
   },
   watch: {
     goals: function () {
