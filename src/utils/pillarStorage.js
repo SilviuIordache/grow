@@ -4,9 +4,6 @@ class PillarStorage {
   constructor() {
     this.storage = localStorage;
   }
-
-  
-
   // Create
   set(newPillars) {
     this.storage.setItem('pillars', JSON.stringify(newPillars));
@@ -45,7 +42,7 @@ class PillarStorage {
 
   // Delete
   delete(id) {
-
+    
   }
 
   wipe() {
