@@ -67,7 +67,7 @@ export default {
     },
     setListColor() {
       const elem = this.$refs.el;
-      elem.style.color = this.pillars[currentQuestion].color;
+      elem.style.color = this.pillars[this.currentQuestion].color;
     }
   }
 };
