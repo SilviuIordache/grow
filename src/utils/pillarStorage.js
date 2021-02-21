@@ -5,6 +5,14 @@ class PillarStorage {
     this.storage = localStorage;
   }
 
+  
+
+  // Create
+  set(newPillars) {
+    this.storage.setItem('pillars', JSON.stringify(newPillars));
+  }
+
+  // Read
   get() {
     const pillars = JSON.parse( this.storage.getItem('pillars'));
     if (pillars) {
@@ -15,10 +23,7 @@ class PillarStorage {
     }
   }
 
-  set(newPillars) {
-    this.storage.setItem('pillars', JSON.stringify(newPillars));
-  }
-
+  // Update
   updatePillarGoals(pillarName, newGoals) {
     const pillars = JSON.parse(localStorage.getItem('pillars'));
 
@@ -38,6 +43,7 @@ class PillarStorage {
     localStorage.setItem('pillars', JSON.stringify(pillars));
   }
 
+  // Delete
   delete(id) {
 
   }
