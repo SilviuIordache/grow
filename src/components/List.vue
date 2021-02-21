@@ -3,7 +3,7 @@
     span.mr-1 {{ name }}
     span ({{ pillar.rating }}/10)
     draggable.list-group.list-style-custom(v-model='goals' group='all-goals' @start='drag=true' @end='drag=false')
-      List-Item(v-for='goal in goals' :goal="goal")
+      List-Item(v-for='goal in goals' :goal="goal" :pillar="pillar.name")
 
 </template>
 

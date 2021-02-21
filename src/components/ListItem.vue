@@ -11,10 +11,15 @@
 </template>
 
 <script>
+import pillarStorage from '../utils/pillarStorage';
 export default {
   props: {
     goal: {
       type: Object,
+      required: true
+    },
+    pillar: {
+      type: String,
       required: true
     }
   },
@@ -25,7 +30,7 @@ export default {
   },
   methods: {
     deleteGoal(id) {
-      console.log(id);
+      pillarStorage.delete(this.pillar, id);
     }
   },
 };
