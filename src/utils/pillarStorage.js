@@ -33,7 +33,7 @@ class PillarStorage {
     // update it's goals
     updatedPillar.goals = newGoals;
 
-    // replace it with the old one
+    // replace it with the new one
     pillars[index] = updatedPillar;
 
     // update storage
@@ -41,8 +41,27 @@ class PillarStorage {
   }
 
   // Delete
-  delete(id) {
+  delete(pillarName, id) {
+
+    const pillars = JSON.parse(localStorage.getItem('pillars'));
+
+    // find index element with the matching type
+    const pillarIndex = pillars.findIndex((pillar) => pillar.name === pillarName);
+
+    // grab the pillar to be changed
+    const pillarGoals = pillars[pillarIndex].goals;
+
+    // find index of goal to be removed
+    const goalIndex = pillarGoals.findIndex((goal) => goal.id === id);
     
+    // delete goal
+    pillarGoals.splice(goalIndex, 1);
+
+    // update goals it with the new one
+    pillars[pillarIndex].goals = pillarGoals;
+
+    // update storage
+    localStorage.setItem('pillars', JSON.stringify(pillars));
   }
 
   wipe() {
