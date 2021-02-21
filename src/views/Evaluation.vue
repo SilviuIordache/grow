@@ -5,6 +5,7 @@
     .row(v-else)
       .col-12.d-flex.justify-content-center
         .question-container
+          .name-container(ref='el') {{ pillars[currentQuestion].name }}
           p {{ currentQuestion + 1}} / {{ pillars.length }}
           p On a scale from 1 to 10, how would you rate your {{ pillars[currentQuestion].name }}?
           .form
@@ -60,8 +61,13 @@ export default {
         this.currentQuestion += 1;
       } else {
         pillarStorage.set(this.pillars);
+        this.setListColor();
         this.$router.push({ path: '/results' })
       }
+    },
+    setListColor() {
+      const elem = this.$refs.el;
+      elem.style.color = this.pillars[currentQuestion].color;
     }
   }
 };
