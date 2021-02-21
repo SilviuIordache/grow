@@ -43,7 +43,7 @@ export default {
 
     this.$on('list:updated', (data) => {
       const { pillar, goals} = data;
-      this.updatePillarGoals(pillar, goals)
+      pillarStorage.updatePillarGoals(pillar, goals)
     })
   },
   methods: {
@@ -58,7 +58,7 @@ export default {
         const newGoals = this.pillars.find((pillar) => pillar.name === this.newGoal.category).goals;
         newGoals.push(goal);
   
-        this.updatePillarGoals(this.newGoal.category, newGoals);
+        pillarStorage.updatePillarGoals(this.newGoal.category, newGoals);
 
         // reset form
         this.newGoal = {text: '', category: '' }
@@ -71,24 +71,7 @@ export default {
       this.goals = this.goals.filter(goal => goal.id != id);
       // to update list
     },
-    updatePillarGoals(pillarName, newGoals) {
-      const pillars = JSON.parse(localStorage.getItem('pillars'));
-
-      // find index element with the matching type
-      const index = pillars.findIndex((pillar) => pillar.name === pillarName);
-
-      // grab the pillar to be changed
-      const updatedPillar = pillars[index];
-      
-      // update it's goals
-      updatedPillar.goals = newGoals;
-
-      // replace it with the old one
-      pillars[index] = updatedPillar;
-
-      // update storage
-      localStorage.setItem('pillars', JSON.stringify(pillars));
-    },
+    
   }
 };
 </script>
