@@ -25,10 +25,10 @@ export default {
   },
   methods: {
     deleteGoal(id) {
+      console.log(id);
     }
   },
 };
-
 </script>
 
 <style lang="stylus" scoped>

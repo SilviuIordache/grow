@@ -67,11 +67,6 @@ export default {
     getPillars() {
       this.pillars = pillarStorage.get();
     },
-    deleteGoal(id) {
-      this.goals = this.goals.filter(goal => goal.id != id);
-      // to update list
-    },
-    
   }
 };
 </script>
