@@ -5,20 +5,23 @@
     .row(v-else)
       .col-12.d-flex.justify-content-center
         .question-container
-          .name-container(ref='el') {{ pillars[currentQuestion].name }}
+          #name-container(ref='el' :style="{ color: pillars[currentQuestion].color}") {{ pillars[currentQuestion].name }}
           p {{ currentQuestion + 1}} / {{ pillars.length }}
           p On a scale from 1 to 10, how would you rate your {{ pillars[currentQuestion].name }}?
+          .d-flex.justify-content-center
+            h3.mb-4 {{ pillars[currentQuestion].rating}}
           .form
-            .form-check.form-check-inline.mr-2(v-for="index in 10" :key="index")
-              input.form-check-input(type='radio' :value="index" v-model="pillars[currentQuestion].rating")
-              label.form-check-label {{ index }}
+            input.slider(type='range' min="1" max="10" step="0.5" v-model="pillars[currentQuestion].rating")
+            .numbers-container.mx-1.d-flex.justify-content-between
+              span 1
+              span 10
           .buttons-container.mt-4
-            .nav-buttons
-              button.btn.btn-primary.mr-4(v-if="currentQuestion > 0" @click="back()" ).
+            .nav-buttons.d-flex.justify-content-around
+              button.btn.btn-primary.mr-4(:class="{ 'hidden': currentQuestion === 0}" @click="back()" ).
                 Back
               button.btn.btn-primary(role="button" type="button" @click="next()" :disabled="!pillars[currentQuestion].rating")
                 span(v-if="currentQuestion < pillars.length - 1") Next
-                span(v-else) Show Results
+                span(v-else) Finish
           .answer-container.mt-4
             p(v-if="pillars[currentQuestion].rating === 0") Rate this area to continue
             p(v-else) You rated {{ pillars[currentQuestion].name}} with {{ pillars[currentQuestion].rating }}/10
@@ -35,7 +38,6 @@ export default {
   },
   created() {
     this.pillars = pillarStorage.get();
-    this.redirectIfCompleted();
   },
   methods: {
     redirectIfCompleted() {
@@ -61,19 +63,20 @@ export default {
         this.currentQuestion += 1;
       } else {
         pillarStorage.set(this.pillars);
-        this.setListColor();
         this.$router.push({ path: '/results' })
       }
     },
     setListColor() {
       const elem = this.$refs.el;
       elem.style.color = this.pillars[this.currentQuestion].color;
-    }
+    },
   }
 };
 </script>
 
 <style scoped lang="stylus">
+  .hidden
+    visibility hidden
   .main
     color gray
 
@@ -82,5 +85,31 @@ export default {
 
       .form-check
         cursor pointer
+      
+      .slider
+        -webkit-appearance none
+        border-radius 1rem
+        width 100%
+        height 1.2rem
+        background #d3d3d3
+        outline none
+        opacity 0.7
+        -webkit-transition .2s
+        transition opacity .2s
+        &:hover
+            opacity 1
+        &::-webkit-slider-thumb
+            border-radius 1rem
+            -webkit-appearance none
+            appearance none
+            width 1.8rem
+            height 1.8rem
+            background #04AA6D
+            cursor pointer
+        &::-moz-range-thumb
+            width 1.5rem
+            height 1.5rem
+            background #04AA6D
+            cursor pointer
 
 </style>

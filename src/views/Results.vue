@@ -11,8 +11,9 @@
           p For a happier life, these are the areas to improve:
           p(v-for="pillar in improvePillars") {{ pillar.name }}: {{ pillar.rating}}/10
         .restart-container
-          button.btn.btn-primary(role="button" type="button" @click="restart()") Restart Evaluation
-          button.btn.btn-primary.ml-3(role="button" type="button" @click="goToGoals()") Set Goals for lacking areas 
+          button.btn.btn-success.d-block.mb-2(role="button" type="button" @click="restart()") Restart Evaluation
+          button.btn.btn-warning.d-block.mb-2(role="button" type="button" @click="edit()") Edit current Evaluation
+          button.btn.btn-primary.s.d-block.mb-2(role="button" type="button" @click="goToGoals()") Set Goals for lacking areas 
 </template>
 
 <script>
@@ -57,6 +58,9 @@ export default {
     },
     restart() {
       pillarStorage.wipe();
+      this.$router.push('/evaluation')
+    },
+    edit() {
       this.$router.push('/evaluation')
     },
     goToGoals() {
