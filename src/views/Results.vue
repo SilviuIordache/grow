@@ -1,11 +1,11 @@
 <template lang="pug">
   .main.container
     .row.mb-5
-      .col-12.col-lg-6.d-flex.justify-content-center
+      .col-12.col-lg-7.d-flex.justify-content-center
         .results-container
           .chart-container
             canvas#resultsChart(width="600" height="600")
-      .col-12.col-lg-6.px-4.border-left
+      .col-12.col-lg-5.px-4.border-left
         .pillars-to-improve
           p Like an out of balance wheel, life can also grow out of balance when some areas are lacking.
           p For a happier life, these are the areas to improve:
