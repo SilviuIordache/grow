@@ -5,26 +5,28 @@
     .row(v-else)
       .col-12.d-flex.justify-content-center
         .question-container
-          #name-container(ref='el' :style="{ color: pillars[currentQuestion].color}") {{ pillars[currentQuestion].name }}
-          p {{ currentQuestion + 1}} / {{ pillars.length }}
-          p On a scale from 1 to 10, how would you rate your {{ pillars[currentQuestion].name }}?
-          .d-flex.justify-content-center
-            h3.mb-4 {{ pillars[currentQuestion].rating}}
-          .form
-            input.slider(type='range' min="1" max="10" step="0.5" v-model="pillars[currentQuestion].rating")
-            .numbers-container.mx-1.d-flex.justify-content-between
-              span 1
-              span 10
-          .buttons-container.mt-4
-            .nav-buttons.d-flex.justify-content-around
-              button.btn.btn-primary.mr-4(:class="{ 'hidden': currentQuestion === 0}" @click="back()" ).
-                Back
-              button.btn.btn-primary(role="button" type="button" @click="next()" :disabled="!pillars[currentQuestion].rating")
-                span(v-if="currentQuestion < pillars.length - 1") Next
-                span(v-else) Finish
-          .answer-container.mt-4
-            p(v-if="pillars[currentQuestion].rating === 0") Rate this area to continue
-            p(v-else) You rated {{ pillars[currentQuestion].name}} with {{ pillars[currentQuestion].rating }}/10
+          .top-half
+            .title-container.d-flex.align-items-center.mb-3
+              i.mr-2.fa-lg(:class="pillars[currentQuestion].icon" :style="{ color: pillars[currentQuestion].color}")
+              h3.my-0(ref='el' :style="{ color: pillars[currentQuestion].color}") {{ pillars[currentQuestion].name }}
+            p {{ pillars[currentQuestion].description }}
+            p {{ currentQuestion + 1}} / {{ pillars.length }}
+            p On a scale from 0 to 10, how would you rate the pillar of {{ pillars[currentQuestion].name }}?
+            h3.mb-4.text-center {{ pillars[currentQuestion].rating}}
+          .bottom-half
+            .form
+              input.slider(type='range' min="0" max="10" step="0.5" v-model="pillars[currentQuestion].rating" @click="sliderClick()")
+              .numbers-container.mx-1.d-flex.justify-content-between
+                span 0
+                span 10
+              h3.mb-4.text-center(:class="{ 'hidden': rated }") Rate this pillar
+            .buttons-container.mt-4
+              .nav-buttons.d-flex.justify-content-around
+                //- button.btn.btn-primary.mr-4(:class="{ 'hidden': currentQuestion === 0}" @click="back()" ).
+                //-   Back
+                button.btn.btn-primary(v-if="rated" role="button" type="button" @click="next()" :disabled="!rated")
+                  span(v-if="currentQuestion < pillars.length - 1") Next
+                  span(v-else) Finish
 </template>
 
 <script>
@@ -34,6 +36,7 @@ export default {
     return {
       pillars: [],
       currentQuestion: 0,
+      rated: false
     }
   },
   created() {
@@ -61,15 +64,16 @@ export default {
     next() {
       if (this.currentQuestion < this.pillars.length - 1) {
         this.currentQuestion += 1;
+        this.rated = false;
       } else {
         pillarStorage.set(this.pillars);
         this.$router.push({ path: '/results' })
       }
     },
-    setListColor() {
-      const elem = this.$refs.el;
-      elem.style.color = this.pillars[this.currentQuestion].color;
-    },
+    sliderClick() {
+      this.rated = true;
+    }
+    
   }
 };
 </script>
@@ -81,7 +85,7 @@ export default {
     color gray
 
     .question-container
-      min-width 30rem
+      width 40rem
 
       .form-check
         cursor pointer
@@ -104,12 +108,12 @@ export default {
             appearance none
             width 1.8rem
             height 1.8rem
-            background #04AA6D
+            background #007bff
             cursor pointer
         &::-moz-range-thumb
             width 1.5rem
             height 1.5rem
-            background #04AA6D
+            background #007bff
             cursor pointer
 
 </style>
