@@ -2,6 +2,7 @@
   .navbar.d-flex.justify-content-start.py-4.px-5.mb-5
     router-link(to="/") Home
     router-link.ml-4(to="/evaluation") Evaluation
+    router-link.ml-4(to="/results") Results
     router-link.ml-4(to="/goals") Goals
 
 </template>
