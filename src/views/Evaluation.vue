@@ -9,8 +9,9 @@
             .title-container.d-flex.align-items-center.mb-3
               i.mr-2.fa-lg(:class="pillars[currentQuestion].icon" :style="{ color: pillars[currentQuestion].color}")
               h3.my-0(ref='el' :style="{ color: pillars[currentQuestion].color}") {{ pillars[currentQuestion].name }}
-            p {{ pillars[currentQuestion].description }}
             p {{ currentQuestion + 1}} / {{ pillars.length }}
+            p {{ pillars[currentQuestion].description }}
+            
             p On a scale from 0 to 10, how would you rate the pillar of {{ pillars[currentQuestion].name }}?
             h3.mb-4.text-center {{ pillars[currentQuestion].rating}}
           .bottom-half
