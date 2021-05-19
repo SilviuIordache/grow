@@ -25,7 +25,7 @@
       "goals": []
     },
     { 
-      "name": "Career/Passion",
+      "name": "Career & Passion",
       "icon": "fa-briefcase fas",
       "description": "Feeling good at something builds self-confidence. Figuring a way to make money out of is a great way to boost your hapiness. When you know you are doing good at your job or with your company, you know your talent is valued.",
       "rating": 5,
@@ -33,7 +33,7 @@
       "goals": []
     },
     { 
-      "name": "Hobbies/Fun",
+      "name": "Hobbies & Fun",
       "icon": "fa-basketball-ball fas",
       "description": "We all need time to unwind, relax or escape from our day-to-day stress. Various activities can help us with this: it can be something as small as reading a book, walking in the park or as big as climbing a mountain in the weekend or going bungee-jumping. Everyone has a version of unwinding. How would you rate yours?",
       "rating": 5,
