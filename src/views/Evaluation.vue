@@ -24,7 +24,7 @@
               .nav-buttons.d-flex.justify-content-around
                 //- button.btn.btn-primary.mr-4(:class="{ 'hidden': currentQuestion === 0}" @click="back()" ).
                 //-   Back
-                button.btn.btn-primary(v-if="rated" role="button" type="button" @click="next()" :disabled="!rated")
+                button.btn.btn-primary.btn-lg(v-if="rated" role="button" type="button" @click="next()" :disabled="!rated")
                   span(v-if="currentQuestion < pillars.length - 1") Next
                   span(v-else) Finish
 </template>

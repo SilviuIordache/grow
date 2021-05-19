@@ -12,13 +12,23 @@
         
         p Similarly, when some areas aren't doing so great, the wheel of life starts to roll out of balance, taking a toll on hapiness, which is at it's core.
 
-        p The main life pillars are: Love, Finances, Relationships, Career, Fun, Health, Mind, Purpose.
-        .evaluation-container.mt-3
-          button.btn.btn-primary(role="button" type="button" @click="startEvaluation()") Start
+        p The main life pillars are:
+        .container
+          .row
+            .col-6.col-md-3.my-3(v-for="pillar in pillars")
+              i.mr-2.fa-lg(:class="pillar.icon" :style="{ color: pillar.color}")
+              span {{ pillar.name }}
+        .evaluation-container.my-5.text-center
+          button.btn.btn-primary.btn-lg(role="button" type="button" @click="startEvaluation()") Start evaluation
 </template>
 
 <script>
+import pillarStorage from '../utils/pillarStorage.js';
+
 export default {
+  created() {
+    this.pillars = pillarStorage.get();
+  },
   methods: {
     startEvaluation() {
       this.$router.push({ path: '/evaluation' })
