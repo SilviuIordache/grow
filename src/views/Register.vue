@@ -5,8 +5,11 @@
         form(@submit.prevent="register")
           h1.mb-5 Registration
           .form-group
+            label(for='usernameInput') Username
+            input#usernameInput.form-control(type='username' v-model="username" placeholder='Username')
+          .form-group
             label(for='emailInput') Email address
-            input#emailInput.form-control(type='email' v-model="email" placeholder='Enter email')
+            input#emailInput.form-control(type='email' v-model="email" placeholder='Email')
           .form-group
             label(for='passInput') Password
             input#passInput.form-control(type='password' v-model="password" placeholder='Password')
@@ -25,6 +28,7 @@ import 'firebase/auth';
 export default {
    data() {
     return {
+      username: '',
       email: '',
       password: '',
       error: ''
@@ -33,7 +37,11 @@ export default {
   methods: {
     async register() {
       try {
-        await firebase.auth().createUserWithEmailAndPassword(this.email, this.password);
+        const response = await firebase.auth().createUserWithEmailAndPassword(this.email, this.password);
+
+        await this.$db.collection('users').doc(response.user.uid).set({
+          username: this.username
+        })
         this.$router.push('/')
       } catch (err) {
         this.error = err.message;
