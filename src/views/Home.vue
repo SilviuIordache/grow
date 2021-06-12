@@ -1,5 +1,5 @@
 <template lang="pug">
-  .main.container
+  .container
     .row
       .col-12
         h1 Grow

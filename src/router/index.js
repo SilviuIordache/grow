@@ -7,6 +7,7 @@ import Register from '../views/Register.vue';
 import Evaluation from '../views/Evaluation.vue';
 import Results from '../views/Results.vue';
 import Goals from '../views/Goals.vue';
+import Profile from '../views/Profile.vue';
 
 Vue.use(VueRouter);
 
@@ -42,6 +43,11 @@ const router = new VueRouter({
       path: '/register',
       name: 'register',
       component: Register
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: Profile
     }
   ]
 })

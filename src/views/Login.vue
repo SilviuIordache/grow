@@ -1,5 +1,5 @@
 <template lang="pug">
-  .main.container
+  .container
     .row
       .col-12.d-flex.justify-content-center
         form(@submit.prevent="login")
