@@ -1,5 +1,5 @@
 <template lang="pug">
-  .main.container
+  .container
     .row
       .col-12
         h1 Your Goals
@@ -72,9 +72,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  .main
-    color gray
-
+  .container
     .drag-list-item
       cursor pointer
       min-width 10rem

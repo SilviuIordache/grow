@@ -1,5 +1,5 @@
 <template lang="pug">
-  .main.container
+  .container
     .row(v-if="!this.pillars").
       Loading..
     .row(v-else)
@@ -82,7 +82,7 @@ export default {
 <style scoped lang="stylus">
   .hidden
     visibility hidden
-  .main
+  .container
     color gray
 
     .question-container
