@@ -1,6 +1,6 @@
 <template lang="pug">
   .navbar.px-5.mb-5
-    .container.d-block
+    .container.d-block.px-0
       nav.navbar.navbar-light.navbar-expand-lg
         ul.navbar-nav.mr-auto
           li.nav-item
