@@ -37,9 +37,8 @@ export default {
   methods: {
     async signOut() {
       try {
-        const data = await firebase.auth().signOut();
-        this.$router.push('/login')
-        console.log(data);
+        this.$router.push('/login');
+        await firebase.auth().signOut();
       } catch (err) {
         console.log(err);
       }

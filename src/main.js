@@ -3,11 +3,13 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router/index.js'
 import firebase from 'firebase/app';
+import 'firebase/firestore';
 import { firebaseConfig } from './firebase.js';
 
 firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
-Vue.config.devtools = true;
+Vue.prototype.$db = db;
 
 const app = new Vue({
   el: '#app',
