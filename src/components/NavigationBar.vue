@@ -4,7 +4,7 @@
       nav.navbar.navbar-light.navbar-expand-lg
         ul.navbar-nav.mr-auto
           li.nav-item
-            router-link.nav-link(to="/" :class="{ 'active': $route.name === 'main' }") Main
+            router-link.nav-link(to="/" :class="{ 'active': $route.name === 'home' }") Home
           li.nav-item
             router-link.nav-link(to="/evaluation" :class="{ 'active': $route.name === 'evaluation' }") Evaluation
           li.nav-item
