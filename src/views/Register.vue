@@ -3,34 +3,50 @@
     .row
       .col-12.d-flex.justify-content-center
         form(@submit.prevent="register")
-          .form-field
-            label.d-block Email
-            input(type="email" v-model="email")
-          .form-field
-            label.d-block Password
-            input(type="password" v-model="password")
+          h1.mb-5 Registration
+          .form-group
+            label(for='emailInput') Email address
+            input#emailInput.form-control(type='email' v-model="email" placeholder='Enter email')
+          .form-group
+            label(for='passInput') Password
+            input#passInput.form-control(type='password' v-model="password" placeholder='Password')
 
-          button Register
+          button.mt-4.btn.btn-primary(type='submit') Register
+
+          .error(v-if="error") 
+            p {{ error }}
+
 </template>
 
 <script>
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 export default {
    data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      error: ''
     }
   },
   methods: {
-    register() {
-      console.log(this.email, this.password);
+    async register() {
+      try {
+        await firebase.auth().createUserWithEmailAndPassword(this.email, this.password);
+        this.$router.push('/')
+      } catch (err) {
+        this.error = err.message;
+        console.log(err);
+      }
     }  
   }
 };
 </script>
 
 <style scoped lang="stylus">
-  .form-field
-    margin-bottom 1.5rem
+  form
+    width 20rem  
+  .error
+    color red
 </style>

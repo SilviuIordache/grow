@@ -15,32 +15,32 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      name: 'Main',
+      name: 'main',
       component: Main
     },
     {
       path: '/evaluation',
-      name: 'Evaluation',
+      name: 'evaluation',
       component: Evaluation
     },
     {
       path: '/results',
-      name: 'Results',
+      name: 'results',
       component: Results
     },
     {
       path: '/goals',
-      name: 'Goals',
+      name: 'goals',
       component: Goals
     },
     {
       path: '/login',
-      name: 'Login',
+      name: 'login',
       component: Login
     },
     {
       path: '/register',
-      name: 'Register',
+      name: 'register',
       component: Register
     }
   ]
