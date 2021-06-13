@@ -1,6 +1,6 @@
 <template lang="pug">
   main
-    navigation-bar(:userEmail="userEmail" :loggedIn="loggedIn")
+    navigation-bar(:username="username" :loggedIn="loggedIn")
     router-view
 </template>
 
@@ -15,7 +15,7 @@ export default {
   },
   data() {
     return {
-      userEmail: '',
+      username: '',
       loggedIn: false,
     }
   },
@@ -27,7 +27,7 @@ export default {
       firebase.auth().onAuthStateChanged(user => {
         this.loggedIn = !!user;
         if (this.loggedIn) {
-          this.userEmail = firebase.auth().currentUser.email;
+          this.username = firebase.auth().currentUser.displayName;
         }
       })
     }
