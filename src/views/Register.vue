@@ -39,9 +39,10 @@ export default {
       try {
         const response = await firebase.auth().createUserWithEmailAndPassword(this.email, this.password);
 
-        await this.$db.collection('users').doc(response.user.uid).set({
-          username: this.username
-        })
+        response.user.updateProfile({
+          displayName: this.username
+        });
+
         this.$router.push('/')
       } catch (err) {
         this.error = err.message;

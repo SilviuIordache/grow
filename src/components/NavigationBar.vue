@@ -13,7 +13,7 @@
             router-link.nav-link(to="/goals" :class="{ 'active': $route.name === 'goals' }") Goals
         ul.navbar-nav.ml-auto(v-if="loggedIn")
           li.nav-item
-            router-link.nav-link(to="/profile" :class="{ 'active': $route.name === 'profile' }") {{ userEmail }}
+            router-link.nav-link(to="/profile" :class="{ 'active': $route.name === 'profile' }") {{ username }}
           li.nav-item
             a.nav-link(@click="signOut()" href="") Sign Out
           
@@ -31,7 +31,7 @@ import 'firebase/auth';
 export default {
   name: 'NavigationBar',
   props: {
-    userEmail: String,
+    username: String,
     loggedIn: Boolean
   },
   methods: {
