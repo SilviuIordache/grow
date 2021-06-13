@@ -3,10 +3,35 @@
     .row
       .col-12
         h1 Profile
-        p
+        p username: {{ username }}
+        p email: {{ email }}
 
 </template>
 
+<script>
+import firebase from 'firebase/app';
+import 'firebase/auth';
+
+export default {
+  data() {
+    return {
+      username: '',
+      email: ''
+    }
+  },
+  async mounted() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        const user = firebase.auth().currentUser;
+        if (user) {
+          this.username = user.displayName;
+          this.email = user.email;
+        }
+      }
+    });
+  },
+};
+</script>
 
 <style scoped lang="stylus">
   .main
