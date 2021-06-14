@@ -6,10 +6,10 @@
           h1.mb-5 Registration
           .form-group
             label(for='usernameInput') Username
-            input#usernameInput.form-control(type='username' v-model="username" placeholder='Username')
+            input#usernameInput.form-control(type='displayName' v-model="username" placeholder='Username')
           .form-group
             label(for='emailInput') Email address
-            input#emailInput.form-control(type='email' v-model="email" placeholder='Email')
+            input#emailInput.form-control(type='username' v-model="email" placeholder='Email')
           .form-group
             label(for='passInput') Password
             input#passInput.form-control(type='password' v-model="password" placeholder='Password')
