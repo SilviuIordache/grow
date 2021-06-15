@@ -7,7 +7,7 @@
   span( :class="{ strike: goal.completed}") {{ goal.description }}
   .buttons-container.d-flex.align-items-center.justify-content-between.ml-4(v-if="buttonsVisible")
     input(type="checkbox" :checked="goal.completed"  @change="goal.completed = !goal.completed")
-    i.far.fa-trash-alt.ml-3(@click="deleteGoal(goal.id)")
+    i.far.fa-trash-alt.ml-3(@click="deleteGoal()")
 </template>
 
 <script>
@@ -26,8 +26,14 @@ export default {
     }
   },
   methods: {
-    deleteGoal(id) {
-      pillarStorage.delete(this.pillar, id);
+    async deleteGoal() {
+      try {
+        await this.$db.collection('goals').doc(this.goal.id).delete();
+        this.$parent.$emit('goal:deleted')
+      } catch (err) {
+        console.log(err)
+      }
+
     }
   },
 };

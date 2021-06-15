@@ -4,7 +4,7 @@
       .col-12.d-flex
         h1 Goals for
 
-        select.d-inline#goal-category.ml-3(required v-model="pillarCategory")
+        select.d-inline#goal-category.ml-3(required v-model="pillarCategory" @change="getGoals()")
           option(value="")  --- choose a pillar ---
           option(v-for="pillar in pillars" :value="pillar.name") {{ pillar.name }}
         
@@ -21,19 +21,17 @@
             input(type="submit" name="submit" value="Add Goal" @click="addGoal()")
             span.ml-3.text-success(v-if="goalAddedSuccessfully") Goal added successfully
       .col-12.col-md-6
-        h2 Current goals ({{ goals.length}})
+        h2.mb-5 Current goals ({{ goals.length}})
         .goals-container(v-if="goals.length > 0")
-          //- .goal(v-for="goal in goals") {{ goal.description }}
-          List(:goals="goals")
+          .d-flex.justify-content-center(v-if="loading")
+            .spinner-border.text-primary
+          .goals-inner(v-else)
+            List-Item(v-for='goal in goals' :goal="goal")
         .no-goals(v-else) No goals created yet for this category
-  
-    //- .row
-    //-   list(v-for="pillar in pillars" :pillar="pillar")
-
 </template>
 
 <script>
-import List from '../components/List.vue';
+import ListItem from '../components/ListItem.vue';
 import pillarStorage from '../utils/pillarStorage';
 
 
@@ -41,9 +39,7 @@ export default {
   props: {
     userID: String
   },
-  components: { 
-    'List': List
-  },
+  components:{ ListItem },
   data() {
     return {
       pillars: [],
@@ -51,19 +47,16 @@ export default {
       pillarCategory: 'Love',
       goalDescription: '',
       goals: [],
-      goalAddedSuccessfully: false
+      goalAddedSuccessfully: false,
+      loading: false
     }
   },
-  async mounted() {
+  async created() {
     this.getPillars();
-
-    this.goals = await this.getGoals();
-
-    this.$on('list:updated', (data) => {
-      // const { pillar, goals} = data;
-      // pillarStorage.updatePillarGoals(pillar, goals)
+    await this.getGoals();
+    this.$on('goal:deleted', () => {
+      this.getGoals();
     });
-
   },
   watch: {
     pillarCategory: function(val) {
@@ -80,12 +73,10 @@ export default {
             ownerID: this.userID,
             completed: false
           });
-
           this.goalAddedSuccessfully = true;
           setTimeout(() => this.goalAddedSuccessfully = false , 2000);
-          this.goals = await this.getGoals();
 
-          this.getGoals();
+          await this.getGoals();
         } catch {
           alert('Something went wrong, please try again');
         }
@@ -93,13 +84,25 @@ export default {
       this.goalDescription = '';
     },
     async getGoals() {
-      const goals = [];
-      const docRef = await this.$db.collection('goals');
+      this.loading = true;
+
+      this.goals = [];
+      const docRef = await this.$db
+        .collection('goals')
+        .where('ownerID', '==', this.userID)
+        .where('category', '==', this.pillarCategory)
+
       const snapshot = await docRef.get();
+
       snapshot.forEach(doc => {
-        goals.push(doc.data())
+        let goal = {};
+        goal = doc.data();
+        goal.id = doc.id;
+
+        this.goals.push(goal);
       });
-      return goals;
+
+      this.loading = false;
     },
     getPillars() {
       this.pillars = pillarStorage.get();
