@@ -7,7 +7,6 @@
         select.d-inline#goal-category.ml-3(required v-model="pillarCategory" @change="getGoals()")
           option(value="")  --- choose a pillar ---
           option(v-for="pillar in pillars" :value="pillar.name") {{ pillar.name }}
-        
         i.ml-4.fa-3x(v-if="pillars.length > 0" :class="pillars[selectedPillar].icon" :style="{ color: pillars[selectedPillar].color}")
 
     .row
@@ -22,24 +21,28 @@
             span.ml-3.text-success(v-if="goalAddedSuccessfully") Goal added successfully
       .col-12.col-md-6
         h2.mb-5 Current goals ({{ goals.length}})
-        .goals-container(v-if="goals.length > 0")
-          .d-flex.justify-content-center(v-if="loading")
-            .spinner-border.text-primary
-          .goals-inner(v-else)
+        .loading-container.d-flex.justify-content-center(v-if="loading")
+          .spinner-border.text-primary
+        .goals-container(v-else)
+          .no-goals-container(v-if="goals.length === 0").
+            No goals created yet for this category
+          .goals-inner-container(v-else)
             List-Item(v-for='goal in goals' :goal="goal")
-        .no-goals(v-else) No goals created yet for this category
+
 </template>
 
 <script>
 import ListItem from '../components/ListItem.vue';
 import pillarStorage from '../utils/pillarStorage';
 
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 export default {
+  components:{ ListItem },
   props: {
     userID: String
   },
-  components:{ ListItem },
   data() {
     return {
       pillars: [],
@@ -61,6 +64,9 @@ export default {
   watch: {
     pillarCategory: function(val) {
       this.selectedPillar = this.pillars.findIndex((pillar) => pillar.name === this.pillarCategory)
+    },
+    userID: async function() {
+      await this.getGoals();
     }
   },
   methods: {
