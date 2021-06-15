@@ -20,8 +20,8 @@ export default {
       userID: ''
     }
   },
-  mounted() {
-    this.getAuthData();
+  async mounted() {
+    await this.getAuthData();
   },
   methods: {
     getAuthData() {
