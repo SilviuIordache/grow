@@ -35,6 +35,7 @@
 import ListItem from '../components/ListItem.vue';
 import pillarStorage from '../utils/pillarStorage';
 
+import firebase from 'firebase/app';
 import 'firebase/auth';
 
 export default {
@@ -77,11 +78,16 @@ export default {
     async addGoal() {
       if(this.goalDescription) {
         try {
+
+          let createdDate = new Date();
+          let fireStamp = new firebase.firestore.Timestamp.fromDate(createdDate);
+
           await this.$db.collection('goals').add({
             description: this.goalDescription,
             category: this.pillarCategory,
             ownerID: this.userID,
-            completed: false
+            completed: false,
+            createdAt: fireStamp
           });
           this.goalAddedSuccessfully = true;
           setTimeout(() => this.goalAddedSuccessfully = false , 2000);
