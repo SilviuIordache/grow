@@ -107,6 +107,7 @@ export default {
         .collection('goals')
         .where('ownerID', '==', this.userID)
         .where('category', '==', this.pillarCategory)
+        .orderBy("createdAt", 'desc')
 
       const snapshot = await docRef.get();
 
