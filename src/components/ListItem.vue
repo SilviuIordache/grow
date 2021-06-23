@@ -6,7 +6,7 @@
     p.text-muted.mb-0 {{ formatedDate }}
   .buttons-container.d-flex.align-items-center.justify-content-between.ml-4(v-if="buttonsVisible")
     input(type="checkbox" :checked="goal.completed"  @change="toggleGoalCompletion()")
-    i.far.fa-trash-alt.ml-3(@click="deleteGoal()")
+    i.goal-check.far.fa-trash-alt.ml-3(@click="deleteGoal()")
 </template>
 
 <script>
@@ -61,4 +61,7 @@ export default {
     border 1px solid rgba(135, 135, 135, 0.2)
     .strike
       text-decoration: line-through
+    
+  .goal-check
+    cursor pointer
 </style>

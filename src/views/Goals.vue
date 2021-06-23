@@ -11,7 +11,7 @@
 
     .row
       .col-12.col-md-6
-        h2.mb-4 New Goal
+        h2.mb-4 Add new goal
         form(method="POST"  @submit.prevent="")
           .form-group
             label.mr-1(for='goal-text') Description
