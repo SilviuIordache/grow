@@ -35,7 +35,6 @@
 import ListItem from '../components/ListItem.vue';
 import pillarStorage from '../utils/pillarStorage';
 
-import firebase from 'firebase/app';
 import 'firebase/auth';
 
 export default {
@@ -57,7 +56,12 @@ export default {
   async created() {
     this.getPillars();
     await this.getGoals();
+
     this.$on('goal:deleted', () => {
+      this.getGoals();
+    });
+
+    this.$on('goal:updated', () => {
       this.getGoals();
     });
   },
@@ -121,6 +125,7 @@ export default {
   .container
     #goal-description
       height 8rem
+      resize none
 
     .drag-list-item
       cursor pointer
