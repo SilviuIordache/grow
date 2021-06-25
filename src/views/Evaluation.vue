@@ -6,11 +6,13 @@
       .col-12.d-flex.justify-content-center
         .question-container.grow-card
           .top-half
+            h3.mb-3 Evaluation
+            p {{ currentQuestion + 1}} / {{ pillars.length }}
             .title-container.d-flex.align-items-center.mb-3
               i.mr-2.fa-lg(:class="pillars[currentQuestion].icon" :style="{ color: pillars[currentQuestion].color}")
-              h3.my-0(ref='el' :style="{ color: pillars[currentQuestion].color}") {{ pillars[currentQuestion].name }}
-            p {{ currentQuestion + 1}} / {{ pillars.length }}
-            p {{ pillars[currentQuestion].description }}
+              h5.my-0(ref='el' :style="{ color: pillars[currentQuestion].color}") {{ pillars[currentQuestion].name }}
+            
+            #description-container {{ pillars[currentQuestion].description }}
             
             p On a scale from 0 to 10, how would you rate the pillar of {{ pillars[currentQuestion].name }}?
           .bottom-half.mt-5
@@ -86,9 +88,10 @@ export default {
     color gray
 
     .question-container
-      width 40rem
-      height 35rem
-
+      width 45rem
+      height 40rem
+      #description-container 
+        height 8rem
       .form-check
         cursor pointer
       
