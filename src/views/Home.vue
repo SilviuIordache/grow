@@ -16,7 +16,7 @@
           p The main life pillars are:
           .container
             .row
-              .col-6.col-md-3.my-3(v-for="pillar in pillars")
+              .col-12.col-sm-6.col-md-3.my-3(v-for="pillar in pillars")
                 .grow-card.p-4
                   i.mr-2.fa-lg(:class="pillar.icon" :style="{ color: pillar.color}")
                   span {{ pillar.name }}
