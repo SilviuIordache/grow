@@ -1,8 +1,8 @@
 <template lang="pug">
   .container
     .row.mb-5
-      .col-12
-        .grow-card
+      .col-12.d-flex.justify-content-center
+        #summary-container.grow-card
           .pillars-to-improve
             h4 Summary
             p Like an out of balance wheel, life can also grow out of balance when some areas are lacking.
@@ -15,8 +15,8 @@
             button.btn.btn-outline-success.d-block.mb-2(role="button" type="button" @click="restart()") Restart Evaluation
             button.btn.btn-outline-warning.d-block.mb-2(role="button" type="button" @click="edit()") Edit current Evaluation
             button.btn.btn-primary.s.d-block.mb-2(role="button" type="button" @click="goToGoals()") Set Goals for lacking areas
-      .col-12.mt-3
-        .grow-card
+      .col-12.mt-3.d-flex.justify-content-center
+        #chart-container.grow-card
           h4.text-center.mb-5 Evaluation results
           .chart-container
             canvas#resultsChart(width="600" height="600")
@@ -77,6 +77,6 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-  .main
-    color gray
+  #summary-container, #chart-container
+    width 50rem
 </style>
