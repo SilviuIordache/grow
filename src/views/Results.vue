@@ -4,7 +4,7 @@
       .col-12.d-flex.justify-content-center
         #summary-container.grow-card
           .pillars-to-improve
-            h4 Summary
+            h3 Summary
             p Like an out of balance wheel, life can also grow out of balance when some areas are lacking.
             p For a happier life, these are the areas to improve:
             .pillars-to-improve.d-flex.my-3
@@ -17,7 +17,7 @@
             button.btn.btn-primary.s.d-block.mb-2(role="button" type="button" @click="goToGoals()") Set Goals for lacking areas
       .col-12.mt-3.d-flex.justify-content-center
         #chart-container.grow-card
-          h4.text-center.mb-5 Evaluation results
+          h3.text-center.mb-5 Evaluation results
           .chart-container
             canvas#resultsChart(width="600" height="600")
 </template>

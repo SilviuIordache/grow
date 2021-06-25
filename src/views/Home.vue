@@ -3,7 +3,7 @@
     .row
       .col-12
         .grow-card.mb-5
-          h1.mb-4 GROW
+          h1.mb-4 Grow 
           span Grow is a tool for evaluating your key life-areas. You do this through a quick 1-min quiz.
           p A way to evaluate and visualize your life-pillars is through a Wheel-of-Life evaluation tool.
 

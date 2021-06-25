@@ -85,7 +85,6 @@ export default {
   .hidden
     visibility hidden
   .container
-    color gray
 
     .question-container
       width 45rem
