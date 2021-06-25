@@ -2,18 +2,21 @@
   .container
     .row.mb-5
       .col-12.col-lg-7.d-flex.justify-content-center
-        .results-container
+        .results-container.grow-card
+          h4.text-center.mb-5 Evaluation results
           .chart-container
             canvas#resultsChart(width="600" height="600")
       .col-12.col-lg-5.px-4.border-left
-        .pillars-to-improve
-          p Like an out of balance wheel, life can also grow out of balance when some areas are lacking.
-          p For a happier life, these are the areas to improve:
-          p(v-for="pillar in improvePillars") {{ pillar.name }}: {{ pillar.rating}}/10
-        .restart-container
-          button.btn.btn-outline-success.d-block.mb-2(role="button" type="button" @click="restart()") Restart Evaluation
-          button.btn.btn-outline-warning.d-block.mb-2(role="button" type="button" @click="edit()") Edit current Evaluation
-          button.btn.btn-primary.s.d-block.mb-2(role="button" type="button" @click="goToGoals()") Set Goals for lacking areas 
+        .grow-card
+          .pillars-to-improve
+            h4 Summary
+            p Like an out of balance wheel, life can also grow out of balance when some areas are lacking.
+            p For a happier life, these are the areas to improve:
+            p(v-for="pillar in improvePillars") {{ pillar.name }}: {{ pillar.rating}}/10
+          .restart-container
+            button.btn.btn-outline-success.d-block.mb-2(role="button" type="button" @click="restart()") Restart Evaluation
+            button.btn.btn-outline-warning.d-block.mb-2(role="button" type="button" @click="edit()") Edit current Evaluation
+            button.btn.btn-primary.s.d-block.mb-2(role="button" type="button" @click="goToGoals()") Set Goals for lacking areas 
 </template>
 
 <script>
