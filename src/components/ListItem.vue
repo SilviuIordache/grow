@@ -2,8 +2,9 @@
 .list-group-item.drag-list-item.py-2.px-4.d-flex.justify-content-between.align-items-center(:key='goal.id'
   @mouseover="buttonsVisible = true"  @mouseleave="buttonsVisible = false")
   .text-container
-    p( :class="{ strike: goal.completed}") {{ goal.description }}
-    p.text-muted.mb-0 {{ formatedDate }}
+    span.text-info.mr-2(v-if="recentGoal") (NEW)
+    span(:class="{ strike: goal.completed}") {{ goal.description }}
+    //- p.text-muted.mb-0 {{ formatedDate }}
   .buttons-container.d-flex.align-items-center.justify-content-between.ml-4(v-if="buttonsVisible")
     input(type="checkbox" :checked="goal.completed"  @change="toggleGoalCompletion()")
     i.goal-check.far.fa-trash-alt.ml-3(@click="deleteGoal()")
@@ -40,7 +41,7 @@ export default {
       } catch (err) {
         console.log(err);
       }
-    }
+    },
   },
   computed: {
     formatedDate() {
@@ -48,6 +49,11 @@ export default {
       const calendar = date[0];
       const hours = date[1].split('.')[0];
       return calendar + ', ' + hours
+    },
+    recentGoal() {
+      const goalAge = (Date.now() - this.goal.createdAt.toDate() ) / (1000)
+      if (goalAge < 30)
+        return true
     }
   }
 };

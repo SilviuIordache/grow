@@ -11,23 +11,27 @@
 
     .row
       .col-12.col-md-6
-        h2.mb-4 Add new goal
-        form(method="POST"  @submit.prevent="")
-          .form-group
-            label.mr-1(for='goal-text') Description
-            textarea#goal-description.form-control.mb-4(required type='text' name='goal' v-model="goalDescription")
-          .form-group.mt-4
-            input(type="submit" name="submit" value="Add Goal" @click="addGoal()")
-            span.ml-3.text-success(v-if="goalAddedSuccessfully") Goal added successfully
+        .card
+          .card-body
+            h2.mb-4 Add new goal
+            form(method="POST"  @submit.prevent="")
+              .form-group
+                label.mr-1(for='goal-text') Description
+                textarea#goal-description.form-control.mb-4(required type='text' name='goal' v-model="goalDescription")
+              .form-group.mt-4
+                input(type="submit" name="submit" value="Add Goal" @click="addGoal()")
+                span.ml-3.text-success(v-if="goalAddedSuccessfully") Goal added successfully
       .col-12.col-md-6
-        h2.mb-5 Current goals ({{ goals.length}})
-        .loading-container.d-flex.justify-content-center(v-if="loading")
-          .spinner-border.text-primary
-        .goals-container(v-else)
-          .no-goals-container(v-if="goals.length === 0").
-            No goals created yet for this category
-          .goals-inner-container(v-else)
-            List-Item(v-for='goal in goals' :goal="goal")
+        .card
+          .card-body
+            h2.mb-5 Current goals ({{ goals.length}})
+            .loading-container.d-flex.justify-content-center(v-if="loading")
+              .spinner-border.text-primary
+            .goals-container(v-else)
+              .no-goals-container(v-if="goals.length === 0").
+                No goals created yet for this category
+              .goals-inner-container(v-else)
+                List-Item(v-for='goal in goals' :goal="goal")
 
 </template>
 
@@ -141,4 +145,7 @@ export default {
       border 1px solid rgba(135, 135, 135, 0.2)
       .strike
         text-decoration: line-through
+    
+    .card
+      background-color #fffcf5
 </style>
