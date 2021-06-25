@@ -4,7 +4,7 @@
       Loading..
     .row(v-else)
       .col-12.d-flex.justify-content-center
-        .question-container
+        .question-container.grow-card
           .top-half
             .title-container.d-flex.align-items-center.mb-3
               i.mr-2.fa-lg(:class="pillars[currentQuestion].icon" :style="{ color: pillars[currentQuestion].color}")
@@ -13,8 +13,8 @@
             p {{ pillars[currentQuestion].description }}
             
             p On a scale from 0 to 10, how would you rate the pillar of {{ pillars[currentQuestion].name }}?
+          .bottom-half.mt-5
             h3.mb-4.text-center {{ pillars[currentQuestion].rating}}
-          .bottom-half
             .form
               input.slider(type='range' min="0" max="10" step="0.5" v-model="pillars[currentQuestion].rating" @click="sliderClick()")
               .numbers-container.mx-1.d-flex.justify-content-between
@@ -87,6 +87,7 @@ export default {
 
     .question-container
       width 40rem
+      height 35rem
 
       .form-check
         cursor pointer

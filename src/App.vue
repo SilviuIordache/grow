@@ -36,3 +36,7 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus">
+@require './style/cards.styl'
+</style>
