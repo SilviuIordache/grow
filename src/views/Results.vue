@@ -1,7 +1,7 @@
 <template lang="pug">
   .container
     .grow-card
-      .row.mb-2
+      .row.mb-3
         .col-12.d-flex.justify-content-center
           #summary-container
             .pillars-to-improve
@@ -23,7 +23,7 @@
     .row
       .col-12.mt-3.d-flex.justify-content-center
         #chart-container.grow-card
-          h3.text-center.mb-5 Evaluation results
+          h3.mb-5 Evaluation results
           .chart-container
             canvas#resultsChart(width="auto" height="auto")
 </template>
