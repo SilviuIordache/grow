@@ -16,10 +16,10 @@
             p.mb-1 {{ pillar.rating}} / 10
       .row
         .col-12
-          .restart-container.d-flex.justify-content-between.mt-4
-            button.btn.btn-outline-success.d-block.mb-2(role="button" type="button" @click="restart()") Restart Evaluation
-            button.btn.btn-outline-warning.d-block.mb-2(role="button" type="button" @click="edit()") Edit current Evaluation
-            button.btn.btn-primary.s.d-block.mb-2(role="button" type="button" @click="goToGoals()") Set Goals for low score pillars
+          .restart-container.d-flex.justify-content-start.mt-4
+            button.btn.btn-outline-success.d-block.mb-2.mr-4(role="button" type="button" @click="restart()") Restart
+            //- button.btn.btn-outline-warning.d-block.mb-2(role="button" type="button" @click="edit()") Edit current Evaluation
+            button.btn.btn-primary.s.d-block.mb-2(role="button" type="button" @click="goToGoals()") Set goals
     .row
       .col-12.mt-3.d-flex.justify-content-center
         #chart-container.grow-card
