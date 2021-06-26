@@ -1,25 +1,31 @@
 <template lang="pug">
   .container
-    .row.mb-5
-      .col-12.d-flex.justify-content-center
-        #summary-container.grow-card
-          .pillars-to-improve
-            h3 Summary
-            p Like an out of balance wheel, life can also grow out of balance when some areas are lacking.
-            p For a happier life, these are the areas to improve:
-            .pillars-to-improve.d-flex.my-3
-              .grow-card.p-2.mr-3(v-for="pillar in improvePillars")
-                span(:style="{ color: pillar.color}") {{ pillar.name }}
-                span : {{ pillar.rating}}/10
+    .grow-card
+      .row.mb-2
+        .col-12.d-flex.justify-content-center
+          #summary-container
+            .pillars-to-improve
+              h3 Summary
+              p Like an out of balance wheel, life can also grow out of balance when some areas are lacking.
+              p For a happier life, these are the pillars to improve:
+        
+      .row
+        .col-12.col-sm-4.col-md-3.mb-3.mb-sm-0(v-for="pillar in improvePillars")
+          .grow-card.p-3
+            p.mb-1(:style="{ color: pillar.color}") {{ pillar.name }}
+            p.mb-1 {{ pillar.rating}} / 10
+      .row
+        .col-12
           .restart-container.d-flex.justify-content-between.mt-4
             button.btn.btn-outline-success.d-block.mb-2(role="button" type="button" @click="restart()") Restart Evaluation
             button.btn.btn-outline-warning.d-block.mb-2(role="button" type="button" @click="edit()") Edit current Evaluation
-            button.btn.btn-primary.s.d-block.mb-2(role="button" type="button" @click="goToGoals()") Set Goals for lacking areas
+            button.btn.btn-primary.s.d-block.mb-2(role="button" type="button" @click="goToGoals()") Set Goals for low score pillars
+    .row
       .col-12.mt-3.d-flex.justify-content-center
         #chart-container.grow-card
           h3.text-center.mb-5 Evaluation results
           .chart-container
-            canvas#resultsChart(width="600" height="600")
+            canvas#resultsChart(width="auto" height="auto")
 </template>
 
 <script>
@@ -46,7 +52,15 @@ export default {
   
       let chartValues = this.pillars.map((elem) => elem.rating);
       let chartLabels = this.pillars.map((elem) => elem.name);
-      let chartColors = this.pillars.map((elem) => elem.color);
+      let chartColors = this.pillars.map((elem) => {
+        const colorChannels = elem.color.split('(')[1].slice(0, -1).split(',');
+        const r = colorChannels[0].trim();
+        const g = colorChannels[1].trim();
+        const b = colorChannels[2].trim();
+        const alpha = 0.3
+        return `rgba(${r}, ${g}, ${b}, ${alpha}`
+      });
+
       let myChart = new Chart(ctx, {
         type: 'polarArea',
         data: {
@@ -78,5 +92,5 @@ export default {
 
 <style scoped lang="stylus">
   #summary-container, #chart-container
-    width 50rem
+    width 100%
 </style>
