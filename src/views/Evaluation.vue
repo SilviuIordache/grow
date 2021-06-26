@@ -88,9 +88,7 @@ export default {
 
     .question-container
       width 45rem
-      height 40rem
-      #description-container 
-        height 8rem
+
       .form-check
         cursor pointer
       
