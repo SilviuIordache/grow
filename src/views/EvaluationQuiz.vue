@@ -38,6 +38,7 @@ export default {
   data() {
     return {
       pillars: [],
+      evaluation: [],
       currentQuestion: 0,
       rated: false
     }
@@ -49,7 +50,6 @@ export default {
     redirectIfCompleted() {
       let completed = true;
       this.pillars.forEach((pillar) => {
-        console.log(pillar.rating)
         if (pillar.rating === 0) {
           completed = false;
         }

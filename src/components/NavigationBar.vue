@@ -4,13 +4,17 @@
       nav.navbar.navbar-light.navbar-expand-lg
         ul.navbar-nav.mr-auto
           li.nav-item
-            router-link.nav-link(to="/" :class="{ 'active': $route.name === 'home' }") Home
+            router-link.nav-link(to="/" :class="{ 'active': $route.name === 'home' }").
+              Home
           li.nav-item
-            router-link.nav-link(to="/evaluation" :class="{ 'active': $route.name === 'evaluation' }") Evaluation
+            router-link.nav-link(to="/evaluations" :class="{ 'active': $route.name === 'evaluation' }").
+              Evaluations
           li.nav-item
-            router-link.nav-link(to="/results" :class="{ 'active': $route.name === 'results' }") Results
+            router-link.nav-link(to="/results" :class="{ 'active': $route.name === 'results' }").
+              Results
           li.nav-item
-            router-link.nav-link(to="/goals" :class="{ 'active': $route.name === 'goals' }") Goals
+            router-link.nav-link(to="/goals" :class="{ 'active': $route.name === 'goals' }").
+              Goals
         ul.navbar-nav.ml-auto(v-if="loggedIn")
           li.nav-item
             router-link.nav-link(to="/profile" :class="{ 'active': $route.name === 'profile' }") {{ username }}
