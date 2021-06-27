@@ -94,8 +94,8 @@ export default {
           setTimeout(() => this.goalAddedSuccessfully = false , 2000);
 
           await this.getGoals();
-        } catch {
-          alert('Something went wrong, please try again');
+        } catch (err) {
+          alert('Something went wrong, please try again ' + err);
         }
       }
       this.goalDescription = '';
