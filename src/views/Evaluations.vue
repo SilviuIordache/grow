@@ -32,11 +32,18 @@ export default {
   async mounted() {
     await this.getEvaluations();
   },
+  watch: {
+    userID: async function() {
+      await this.getEvaluations();
+    }
+  },
   methods: {
     startNewEvaluation() {
       this.$router.push({ path: '/evaluationQuiz' })
     },
     async getEvaluations() {
+      this.loading = true;
+
       this.evaluations = [];
       const docRef = await this.$db
         .collection('evaluations')
@@ -52,6 +59,8 @@ export default {
 
         this.evaluations.push(evaluation);
       });
+
+      this.loading = false;
     },
     
   },
