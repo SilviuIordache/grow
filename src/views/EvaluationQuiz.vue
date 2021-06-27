@@ -78,13 +78,14 @@ export default {
         this.saveEvaluation();
         this.$router.push('/evaluations');
       }
-
+      this.rating = 5;
       this.currentQuestion += 1;
       this.rated = false;
     },
     addPillarEvaluation() {
       this.evaluation.push({
         name: this.pillars[this.currentQuestion].name,
+        icon: this.pillars[this.currentQuestion].icon,
         rating: this.rating,
       });
     },
@@ -93,7 +94,7 @@ export default {
         let createdDate = new Date();
         let fireStamp = new firebase.firestore.Timestamp.fromDate(createdDate);
         await this.$db.collection('evaluations').add({
-          evaluation: this.evaluation,
+          pillars: this.evaluation,
           createdAt: fireStamp,
           ownerID: this.userID
         });

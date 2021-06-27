@@ -10,20 +10,21 @@
       .row
         .col-12.mb-4
           h3 Your evaluations
-      .row
-        .col-12.col-sm-3.mb-4(v-if="loading").
+      .row(v-if="loading")
+        .col-12.col-sm-3.mb-4.
             Loading...
-        .col-12.col-sm-3.mb-4(v-else v-for="evaluation in evaluations")
-          .grow-card.p-3
-            p {{ formattedDate(evaluation.createdAt) }}
-            p.text-primary Average rating {{ evalAverageRating(evaluation.evaluation) }}
+        //- .evaluations-container(v-else)
+        //-   .col-12.no-evaluations(v-if="evaluations.length === 0").
+        //-     You don't have any evaluations yet.
+      .row.cards(v-else)
+        Evaluation-Card(v-for="evaluation in evaluations" :evaluation="evaluation")
 </template>
 
 <script>
-import { formattedDate } from '../mixins/formattedDate.js'
+import EvaluationCard from '../components/EvaluationCard.vue';
 
 export default {
-  mixins: [formattedDate],
+  components: { EvaluationCard },
   props: { userID: String },
   data() {
     return {
@@ -33,8 +34,6 @@ export default {
   },
   async mounted() {
     await this.getEvaluations();
-
-    this.evalAverageRating();
   },
   methods: {
     startNewEvaluation() {
@@ -56,24 +55,9 @@ export default {
 
         this.evaluations.push(evaluation);
       });
-
     },
-    evalAverageRating(evaluation) {
-      if (evaluation) {
-        let ratingSum = 0;
-        evaluation.forEach((pillar) => {
-          ratingSum += parseInt(pillar.rating, 10);
-        });
-
-        const avg = ratingSum/ evaluation.length;
-        return avg
-      }
-    }
+    
   },
 };
 </script>
 
-<style scoped lang="stylus">
-  .ceva
-    color black
-</style>
