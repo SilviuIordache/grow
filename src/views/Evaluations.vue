@@ -9,9 +9,11 @@
     .grow-card
       .row
         .col-12.mb-4
-            h3 Your evaluations
+          h3 Your evaluations
       .row
-        .col-12.col-sm-3.mb-4(v-if="evaluations.length > 0" v-for="evaluation in evaluations")
+        .col-12.col-sm-3.mb-4(v-if="loading").
+            Loading...
+        .col-12.col-sm-3.mb-4(v-else v-for="evaluation in evaluations")
           .grow-card.p-3
             p {{ formattedDate(evaluation.createdAt) }}
             p.text-primary Average rating {{ evalAverageRating(evaluation.evaluation) }}
@@ -25,7 +27,8 @@ export default {
   props: { userID: String },
   data() {
     return {
-      evaluations: []
+      evaluations: [],
+      loading: false,
     }
   },
   async mounted() {
