@@ -18,7 +18,7 @@
           .bottom-half.mt-5
             h3.mb-4.text-center {{ pillars[currentQuestion].rating}}
             .form
-              input.slider(type='range' min="0" max="10" step="0.5" v-model="pillars[currentQuestion].rating" @click="sliderClick()")
+              input.slider(type='range' min="0" max="10" step="0.5" v-model="rating" @click="sliderClick()")
               .numbers-container.mx-1.d-flex.justify-content-between
                 span 0
                 span 10
@@ -27,23 +27,28 @@
               .nav-buttons.d-flex.justify-content-around
                 //- button.btn.btn-primary.mr-4(:class="{ 'hidden': currentQuestion === 0}" @click="back()" ).
                 //-   Back
-                button.btn.btn-primary.btn-lg(v-if="rated" role="button" type="button" @click="next()" :disabled="!rated")
+                button.btn.btn-primary.btn-lg( role="button" type="button" @click="next()")
                   span(v-if="currentQuestion < pillars.length - 1") Next
                   span(v-else) Finish
 </template>
 
 <script>
 import pillarStorage from '../utils/pillarStorage.js';
+import firebase from 'firebase/app';
+
 export default {
+  props: { userID: String },
   data() {
     return {
       pillars: [],
       evaluation: [],
       currentQuestion: 0,
+      rating: 5,
       rated: false
     }
   },
   created() {
+    console.log(this.userID)
     this.pillars = pillarStorage.get();
   },
   methods: {
@@ -65,12 +70,35 @@ export default {
       }
     },
     next() {
-      if (this.currentQuestion < this.pillars.length - 1) {
-        this.currentQuestion += 1;
-        this.rated = false;
-      } else {
-        pillarStorage.set(this.pillars);
-        this.$router.push({ path: '/results' })
+      // save each rating
+      this.addPillarEvaluation();
+
+      // when on last, save evaluation
+      if (this.currentQuestion === this.pillars.length - 1) {
+        this.saveEvaluation();
+        this.$router.push('/evaluations');
+      }
+
+      this.currentQuestion += 1;
+      this.rated = false;
+    },
+    addPillarEvaluation() {
+      this.evaluation.push({
+        name: this.pillars[this.currentQuestion].name,
+        rating: this.rating,
+      });
+    },
+    async saveEvaluation() {
+      try {
+        let createdDate = new Date();
+        let fireStamp = new firebase.firestore.Timestamp.fromDate(createdDate);
+        await this.$db.collection('evaluations').add({
+          evaluation: this.evaluation,
+          createdAt: fireStamp,
+          ownerID: this.userID
+        });
+      } catch (err) {
+        console.log(err)
       }
     },
     sliderClick() {
