@@ -13,9 +13,6 @@
       .row(v-if="loading")
         .col-12.col-sm-3.mb-4.
             Loading...
-        //- .evaluations-container(v-else)
-        //-   .col-12.no-evaluations(v-if="evaluations.length === 0").
-        //-     You don't have any evaluations yet.
       .row.cards(v-else)
         Evaluation-Card(v-for="evaluation in evaluations" :evaluation="evaluation")
 </template>
