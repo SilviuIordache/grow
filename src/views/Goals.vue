@@ -3,7 +3,6 @@
     .row.mb-5
       .col-12.d-flex
         h1 Goals for
-
         select.d-inline#goal-category.ml-3(required v-model="pillarCategory" @change="getGoals()")
           option(value="")  --- choose a pillar ---
           option(v-for="pillar in pillars" :value="pillar.name") {{ pillar.name }}
