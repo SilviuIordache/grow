@@ -16,7 +16,7 @@
             
             p On a scale from 0 to 10, how would you rate the pillar of {{ pillars[currentQuestion].name }}?
           .bottom-half.mt-5
-            h3.mb-4.text-center {{ pillars[currentQuestion].rating}}
+            h3.mb-4.text-center {{ rating }}
             .form
               input.slider(type='range' min="0" max="10" step="0.5" v-model="rating" @click="sliderClick()")
               .numbers-container.mx-1.d-flex.justify-content-between
