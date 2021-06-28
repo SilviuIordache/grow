@@ -61,7 +61,7 @@ export default {
         return `rgba(${r}, ${g}, ${b}, ${alpha}`
       });
 
-      let myChart = new Chart(ctx, {
+      let chart = new Chart(ctx, {
         type: 'polarArea',
         data: {
           labels: chartLabels,
