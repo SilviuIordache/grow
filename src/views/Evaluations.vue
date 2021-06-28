@@ -1,12 +1,12 @@
 <template lang="pug">
   .container
-    .row.mb-3
-      .col-12
-        .grow-card
+    .grow-card.mb-3
+      .row
+        .col-12
           h3.mb-3 New evaluation
           p Take a new evaluation quiz
           button.btn.btn-primary(@click="startNewEvaluation()") Start
-    .grow-card
+    .grow-card.mb-3
       .row
         .col-12.mb-4
           h3 Your evaluations
@@ -15,13 +15,15 @@
             Loading...
       .row.cards(v-else)
         Evaluation-Card(v-for="evaluation in evaluations" :evaluation="evaluation")
+    Evaluation-Graph
 </template>
 
 <script>
 import EvaluationCard from '../components/EvaluationCard.vue';
+import EvaluationGraph from '../components/EvaluationGraph.vue';
 
 export default {
-  components: { EvaluationCard },
+  components: { EvaluationCard, EvaluationGraph },
   props: { userID: String },
   data() {
     return {
