@@ -14,7 +14,7 @@
             
             #description-container {{ pillars[currentQuestion].description }}
             
-            p On a scale from 0 to 10, how would you rate the pillar of {{ pillars[currentQuestion].name }}?
+            p On a scale from 0 to 10, how would you rate the pillar of {{ pillars[currentQuestion].name }} in your life?
           .bottom-half.mt-5
             h3.mb-4.text-center {{ rating }}
             .form
