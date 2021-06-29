@@ -15,7 +15,7 @@
             Loading...
       .row.cards(v-else)
         Evaluation-Card(v-for="evaluation in evaluations" :evaluation="evaluation")
-    Evaluation-Graph
+    Evaluation-Graph(:evaluations="evaluations")
 </template>
 
 <script>
