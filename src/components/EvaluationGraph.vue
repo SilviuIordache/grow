@@ -49,7 +49,6 @@ export default {
     calculateChartLabels() {
       for (let i = 0; i < this.evaluations.length; i++) {
         const date = this.formattedDate(this.evaluations[i].createdAt);
-        console.log(date)
         this.evalDates.push(date);
       }
       this.evalDates.reverse();
