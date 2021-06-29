@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     startEvaluation() {
-      this.$router.push({ path: '/evaluation' })
+      this.$router.push({ path: '/evaluationQuiz' })
     }
   }
 };
