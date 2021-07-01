@@ -39,4 +39,5 @@ export default {
 
 <style lang="stylus">
 @require './style/cards.styl'
+@require './style/evaluations.styl'
 </style>
