@@ -1,6 +1,6 @@
 <template lang="pug">
-  .col-12.col-lg-6.mb-4
-    .grow-card.d-flex.justify-content-between.p-4
+  .col-12.col-lg-6.mb-4(@click="goToDetailedEvaluationView()")
+    .evaluation-card.grow-card.grow-card-interactive.d-flex.justify-content-between.p-4
       .left-container
         .pillar-scores-container.d-flex
           .pillar-score.mr-3.mr-md-4(v-for="pillar in evaluation.pillars")
@@ -68,12 +68,16 @@ export default {
         return
       }
       
+    },
+    goToDetailedEvaluationView() {
+      this.$router.push( {path: `/evaluations/${this.evaluation.id}`});
     }
   }
 };
 </script>
 
 <style lang="stylus" scoped>
+
   .avg-rating
     font-size 2rem
   .rating-color-1
