@@ -1,13 +1,7 @@
 <template lang="pug">
-  .grow-card
-    .row
-      .col-12
-          h3 Happiness evolution
-    .row
-      .col-12
-        .chart-container
-          canvas#myChart(width="auto" height="auto")
-
+  .chart-container
+    h3 Happiness evolution
+    canvas#myChart(width="auto" height="auto")
 </template>
 
 <script>

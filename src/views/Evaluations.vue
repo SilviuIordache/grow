@@ -1,11 +1,17 @@
 <template lang="pug">
   .container
-    .grow-card.mb-3
-      .row
-        .col-12
+    
+    .row.mb-3
+      .col-4
+        .grow-card.mb-3
           h3.mb-3 New evaluation
           p Take a new evaluation quiz
           button.btn.btn-primary(@click="startNewEvaluation()") Start
+      .col-8
+        .grow-card
+          Evaluation-Graph(:evaluations="evaluations")
+        
+
     .grow-card.mb-3
       .row
         .col-12.mb-4
@@ -15,7 +21,7 @@
             Loading...
       .row.cards(v-else)
         Evaluation-Card(v-for="evaluation in evaluations" :evaluation="evaluation")
-    Evaluation-Graph(:evaluations="evaluations")
+        
 </template>
 
 <script>
