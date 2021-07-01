@@ -1,12 +1,13 @@
 <template lang="pug">
   .container
-    .row.mb-5
-      .col-12.d-flex
-        h1 Goals for
-        select.d-inline#goal-category.ml-3(required v-model="pillarCategory" @change="getGoals()")
-          option(value="")  --- choose a pillar ---
-          option(v-for="pillar in pillars" :value="pillar.name") {{ pillar.name }}
-        i.ml-4.fa-3x(v-if="pillars.length > 0" :class="pillars[selectedPillar].icon" :style="{ color: pillars[selectedPillar].color}")
+    .row.mb-4
+      .col-12
+        .grow-card.d-flex
+          h1 Set goals for
+          select.d-inline#goal-category.ml-3(required v-model="pillarCategory" @change="getGoals()")
+            option(value="")  --- choose a pillar ---
+            option(v-for="pillar in pillars" :value="pillar.name") {{ pillar.name }}
+          i.ml-4.fa-3x(v-if="pillars.length > 0" :class="pillars[selectedPillar].icon" :style="{ color: pillars[selectedPillar].color}")
 
     .row
       .col-12.col-md-6
