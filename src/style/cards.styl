@@ -3,3 +3,11 @@
   padding 2rem
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   height 100%
+.grow-card-interactive
+    transition: all .2s ease-in-out
+    &:hover
+      cursor pointer
+      transform: scale(1.05);
+    &:active
+      background-color #f5f5f5
+      transform: scale(0.95);
