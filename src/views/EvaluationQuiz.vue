@@ -23,7 +23,7 @@
                 span 0
                 span 10
               h3.mb-4.text-center(:class="{ 'hidden': rated }") Rate this pillar
-              textarea#evaluation-note.form-control.w-100(v-model="note" placeholder="Notes on current pillar (optional)")
+              textarea#evaluation-note.form-control.w-100(v-model="notes" placeholder="Notes on current pillar (optional)")
             .buttons-container.mt-4
               .nav-buttons.d-flex.justify-content-around
                 //- button.btn.btn-primary.mr-4(:class="{ 'hidden': currentQuestion === 0}" @click="back()" ).
@@ -46,7 +46,7 @@ export default {
       currentQuestion: 0,
       rating: 5,
       rated: false,
-      note: ''
+      notes: ''
     }
   },
   created() {
@@ -87,13 +87,13 @@ export default {
       this.evaluation.push({
         name: this.pillars[this.currentQuestion].name,
         icon: this.pillars[this.currentQuestion].icon,
-        notes: this.note,
+        notes: this.notes,
         rating: this.rating,
       });
     },
     resetForm() {
       this.rating = 5;
-      this.note = '';
+      this.notes = '';
       this.rated = false;
     },
     async saveEvaluation() {

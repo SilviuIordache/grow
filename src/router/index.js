@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
+import EvaluationDetails from '../views/EvaluationDetails.vue';
 import Evaluations from '../views/Evaluations.vue';
 import EvaluationQuiz from '../views/EvaluationQuiz.vue';
 import Results from '../views/Results.vue';
@@ -24,6 +25,11 @@ const router = new VueRouter({
       path: '/evaluations',
       name: 'evaluations',
       component: Evaluations
+    },
+    {
+      path: '/evaluations/:id',
+      name: 'EvaluationDetails',
+      component: EvaluationDetails
     },
     {
       path: '/evaluationQuiz',
