@@ -63,9 +63,6 @@ export default {
                 fill: false
             }]
         },
-        // Configuration options go here
-        options: {}
-
       });
     }
   }
