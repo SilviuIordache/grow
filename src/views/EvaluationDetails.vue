@@ -1,17 +1,21 @@
 <template lang="pug">
   .container
     .row.mb-5
-      .grow-card.col-12.mb-3(v-if="evaluation")
-        .title-container
-          h3 Evaluation details
-        .bottom-container.d-flex
-          .score-container.avg-rating(:class="`${this.ratingColorClass}`")
-            i(:class="`${this.emoji}`")
-            p.mb-0 {{ evalAverageRating() }}
-          .text-container.ml-4.d-flex.flex-column.justify-content-around
-            p.mb-0 ID: {{ id }}
-            p.mb-0 Created at: {{ formattedDate(evaluation.createdAt) }}
       .grow-card.col-12(v-if="evaluation")
+        .title-container.mb-4
+          h3 Evaluation details
+        .bottom-container.d-flex.justify-content-between
+          .left-container
+            .score-container.avg-rating(:class="`${this.ratingColorClass}`")
+              i(:class="`${this.emoji}`")
+              p.mb-0 {{ evalAverageRating() }}
+            .text-container.ml-4.d-flex.flex-column.justify-content-around
+              p.mb-0 ID: {{ id }}
+              p.mb-0 Created at: {{ formattedDate(evaluation.createdAt) }}
+          .graph-container.d-flex.align-content-start
+            Evaluation-Graph-Wheel(:evaluation="evaluation")
+
+      .grow-card.col-12.mb-3(v-if="evaluation")
         h3.mb-4 Pillars evaluations
         table.table.table-striped
           thead
@@ -26,20 +30,16 @@
                 span.ml-3 {{ pillar.name }}
               td {{ pillar.rating }}
               td {{ pillar.notes }}
-
-        //- .grow-card.pillar-score.d-flex.mb-2.px-5.py-2(v-for="pillar in evaluation.pillars")
-        //-   .pillar-score
-        //-     p.text-muted {{ pillar.rating }}
-        //-   .pillar-computeRatingVisuals
-        //-     i.fa-xs(:class="pillar.icon")
-        //-     p {{ pillar.name}}
 </template>
 
 <script>
+import EvaluationGraphWheel from '../components/EvaluationGraphWheel.vue';
+
 import { formattedDate } from '../mixins/formattedDate.js';
 import { evaluationMixin } from '../mixins/evaluationMixin.js';
 
 export default {
+  components: { EvaluationGraphWheel },
   props: { userID: String },
   mixins: [formattedDate, evaluationMixin],
   data() {
