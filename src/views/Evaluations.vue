@@ -9,7 +9,7 @@
           button.btn.btn-primary(@click="startNewEvaluation()") Start
       .col-8
         .grow-card
-          Evaluation-Graph(:evaluations="evaluations")
+          Happiness-Graph(:evaluations="evaluations")
         
 
     .grow-card.mb-3
@@ -26,10 +26,10 @@
 
 <script>
 import EvaluationCard from '../components/EvaluationCard.vue';
-import EvaluationGraph from '../components/EvaluationGraph.vue';
+import HappinessGraph from '../components/HappinessGraph.vue';
 
 export default {
-  components: { EvaluationCard, EvaluationGraph },
+  components: { EvaluationCard, HappinessGraph },
   props: { userID: String },
   data() {
     return {
