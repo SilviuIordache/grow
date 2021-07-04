@@ -1,6 +1,6 @@
 <template lang="pug">
   .container
-    .row(v-if="!this.pillars").
+    .row(v-if="loading").
       Loading..
     .row(v-else)
       .col-12.d-flex.justify-content-center
@@ -34,24 +34,26 @@
 </template>
 
 <script>
-import pillarStorage from '../utils/pillarStorage.js';
+import { getPillars } from '../mixins/getPillars.js';
 import firebase from 'firebase/app';
 
 export default {
+  mixins: [getPillars],
   props: { userID: String },
   data() {
     return {
+      loading: false,
       pillars: [],
       evaluation: [],
       currentQuestion: 0,
       rating: 5,
       rated: false,
-      notes: ''
+      notes: '',
+      docID: ''
     }
   },
-  created() {
-    console.log(this.userID)
-    this.pillars = pillarStorage.get();
+  async created() {
+    await this.getPillars();
   },
   methods: {
     redirectIfCompleted() {
@@ -71,14 +73,14 @@ export default {
         this.currentQuestion -= 1;
       }
     },
-    next() {
+    async next() {
       // save each rating
       this.addPillarEvaluation();
 
       // when on last, save evaluation
       if (this.currentQuestion === this.pillars.length - 1) {
-        this.saveEvaluation();
-        this.$router.push('/evaluations');
+        await this.saveEvaluation();
+        this.$router.push({path: `/evaluations/${this.docID}`});
       }
       this.resetForm();
       this.currentQuestion += 1;
@@ -100,11 +102,15 @@ export default {
       try {
         let createdDate = new Date();
         let fireStamp = new firebase.firestore.Timestamp.fromDate(createdDate);
-        await this.$db.collection('evaluations').add({
+        const doc = await this.$db.collection('evaluations').add({
           pillars: this.evaluation,
           createdAt: fireStamp,
           ownerID: this.userID
         });
+
+        this.docID = doc.id;
+
+        console.log(doc.id)
       } catch (err) {
         console.log(err)
       }
