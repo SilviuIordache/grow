@@ -11,7 +11,12 @@
 
         p The main life pillars are:
           
-    .row
+    .row(v-if="loading")
+      .col-12.text-center
+        .spinner-border.text-primary(role='status')
+          span.sr-only Loading...
+
+    .row(v-else)
       .col-12.col-sm-6.col-md-4.col-lg-3.my-3(v-for="pillar in pillars")
         .grow-card.p-4
           i.mr-2.fa-lg(:class="pillar.icon" :style="{ color: pillar.color}")
@@ -23,11 +28,18 @@
 </template>
 
 <script>
-import pillarStorage from '../utils/pillarStorage.js';
+import { getPillars } from '../mixins/getPillars.js';
 
 export default {
-  created() {
-    this.pillars = pillarStorage.get();
+  mixins: [getPillars],
+  data() {
+    return {
+      pillars: [],
+      loading: false
+    }
+  },
+  async created() {
+    await this.getPillars();
   },
   methods: {
     startEvaluation() {
