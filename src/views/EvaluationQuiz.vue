@@ -34,11 +34,11 @@
 </template>
 
 <script>
-import { getPillars } from '../mixins/getPillars.js';
+import { dbMixin } from '../mixins/dbMixin.js';
 import firebase from 'firebase/app';
 
 export default {
-  mixins: [getPillars],
+  mixins: [dbMixin],
   props: { userID: String },
   data() {
     return {

@@ -44,12 +44,12 @@ import EvaluationGraphWheel from '../components/EvaluationGraphWheel.vue';
 
 import { formattedDate } from '../mixins/formattedDate.js';
 import { evaluationMixin } from '../mixins/evaluationMixin.js';
-import { getPillars } from '../mixins/getPillars.js';
+import { dbMixin } from '../mixins/dbMixin.js';
 
 export default {
   components: { EvaluationGraphWheel },
   props: { userID: String },
-  mixins: [formattedDate, evaluationMixin, getPillars],
+  mixins: [formattedDate, evaluationMixin, dbMixin],
   data() {
     return {
       id: '',
