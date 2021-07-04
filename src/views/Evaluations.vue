@@ -1,6 +1,5 @@
 <template lang="pug">
   .container
-    
     .row.mb-3
       .col-12.col-md-4
         .grow-card.mb-3.d-flex.flex-column.justify-content-between
@@ -12,7 +11,8 @@
         .grow-card
           h3.mb-3 Happiness evolution
           Happiness-Graph.mb-4(:evaluations="evaluations")
-          router-link(to="/detailedEvolution") View detailed
+          .detailed-link-container.text-right
+            router-link(to="/detailedEvolution") View detailed →
         
     .grow-card.mb-3
       .row
