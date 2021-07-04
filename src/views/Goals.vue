@@ -34,12 +34,13 @@
 
 <script>
 import ListItem from '../components/ListItem.vue';
-import pillarStorage from '../utils/pillarStorage';
+import { getPillars } from '../mixins/getPillars.js';
 
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
 export default {
+  mixins: [getPillars],
   components:{ ListItem },
   props: {
     userID: String
@@ -56,7 +57,7 @@ export default {
     }
   },
   async created() {
-    this.getPillars();
+    await this.getPillars();
     await this.getGoals();
 
     this.$on('goal:deleted', () => {
@@ -121,9 +122,6 @@ export default {
       });
 
       this.loading = false;
-    },
-    getPillars() {
-      this.pillars = pillarStorage.get();
     },
   }
 };
