@@ -50,16 +50,10 @@ export default {
           legend: {
             position: 'right'
           },
-          responsive: true
+          
         }
       })
     },
   }
 };
 </script>
-
-<style scoped lang="stylus">
-#chart-container
-  width 40rem
-  height auto
-</style>
