@@ -53,25 +53,24 @@ export default {
         type: 'line',
         // The data for our dataset
         data: {
-            labels: this.evalDates,
-            datasets: [{
-                label: 'Happiness',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: this.evalRatings,
-                fill: false
-            }]
+          labels: this.evalDates,
+          datasets: [{
+            label: 'Happiness',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: this.evalRatings,
+            fill: false
+          }]
         },
         options: {
           scales: {
             xAxes: [{
               ticks: {
-                  display: false
+                display: false
               }
             }]
           },
           legend: false
-
         },
       });
     }
