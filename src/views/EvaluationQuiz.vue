@@ -87,8 +87,7 @@ export default {
     },
     addPillarEvaluation() {
       this.evaluation.push({
-        name: this.pillars[this.currentQuestion].name,
-        icon: this.pillars[this.currentQuestion].icon,
+        pillarId: this.pillars[this.currentQuestion].id,
         notes: this.notes,
         rating: this.rating,
       });

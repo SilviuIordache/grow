@@ -12,7 +12,6 @@
         .grow-card
           Happiness-Graph(:evaluations="evaluations")
         
-
     .grow-card.mb-3
       .row
         .col-12.mb-4
@@ -24,7 +23,7 @@
         .col-12.empty-text(v-if="evaluations.length === 0").
           You don't have any evaluations yet. Take a new quiz to create your first.
         .col-12.col-lg-6.mb-4(v-else v-for="evaluation in evaluations" )
-          Evaluation-Card(:evaluation="evaluation")
+          Evaluation-Card(:evaluation="evaluation" :pillars="pillars")
         
 </template>
 
@@ -32,22 +31,22 @@
 import EvaluationCard from '../components/EvaluationCard.vue';
 import HappinessGraph from '../components/HappinessGraph.vue';
 
+import { getPillars } from '../mixins/getPillars.js';
+
 export default {
+  mixins: [getPillars],
   components: { EvaluationCard, HappinessGraph },
   props: { userID: String },
   data() {
     return {
       evaluations: [],
       loading: false,
+      pillars: []
     }
   },
   async mounted() {
+    await this.getPillars();
     await this.getEvaluations();
-  },
-  watch: {
-    userID: async function() {
-      await this.getEvaluations();
-    }
   },
   methods: {
     startNewEvaluation() {

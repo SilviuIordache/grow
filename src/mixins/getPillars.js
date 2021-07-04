@@ -9,7 +9,7 @@ export const getPillars = {
       snapshot.forEach(doc => {
         let pillar = {};
         pillar = doc.data();
-        pillar.id = pillar.id;
+        pillar.id = doc.id;
 
         this.pillars.push(pillar);
       });
