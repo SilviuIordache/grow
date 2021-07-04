@@ -63,6 +63,15 @@ export default {
                 fill: false
             }]
         },
+        options: {
+          scales: {
+              xAxes: [{
+                  ticks: {
+                      display: false
+                  }
+              }]
+          },
+        },
       });
     }
   }
