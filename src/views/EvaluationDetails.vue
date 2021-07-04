@@ -6,12 +6,12 @@
           h3 Evaluation details
         .bottom-container.d-flex.justify-content-between
           .left-container
-            .score-container.avg-rating(:class="`${this.ratingColorClass}`")
-              i(:class="`${this.emoji}`")
-              p.mb-0 {{ evalAverageRating() }}
             .text-container.d-flex.flex-column.justify-content-around
               p.mb-0 ID: {{ id }}
               p.mb-0 Created at: {{ formattedDate(evaluation.createdAt) }}
+            .score-container.avg-rating.mt-4(:class="`${this.ratingColorClass}`")
+              i(:class="`${this.emoji}`")
+              p.mb-0 {{ evalAverageRating() }}
           .graph-container.d-flex.align-content-start
             Evaluation-Graph-Wheel(:evaluation="evaluation" :pillars="pillars")
 
@@ -84,4 +84,6 @@ export default {
 <style lang="stylus" scoped>
   .container
     color black
+    .score-container
+      font-size 3rem
 </style>
