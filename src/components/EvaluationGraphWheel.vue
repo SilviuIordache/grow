@@ -13,8 +13,6 @@ export default {
   },
   watch: {
     evaluation: function () {
-      // this.calculateChartData();
-      // this.calculateChartLabels();
       this.generateChart();
     }
   },
@@ -62,6 +60,6 @@ export default {
 
 <style scoped lang="stylus">
 #chart-container
-  width 35rem
+  width 40rem
   height auto
 </style>
