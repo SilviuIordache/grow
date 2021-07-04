@@ -6,6 +6,7 @@ import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import EvaluationDetails from '../views/EvaluationDetails.vue';
 import Evaluations from '../views/Evaluations.vue';
+import DetailedEvolution from '../views/DetailedEvolution.vue';
 import EvaluationQuiz from '../views/EvaluationQuiz.vue';
 import Results from '../views/Results.vue';
 import Goals from '../views/Goals.vue';
@@ -20,6 +21,11 @@ const router = new VueRouter({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/detailedEvolution',
+      name: 'detailedEvolution',
+      component: DetailedEvolution
     },
     {
       path: '/evaluations',

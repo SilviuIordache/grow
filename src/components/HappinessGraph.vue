@@ -1,6 +1,5 @@
 <template lang="pug">
   .chart-container
-    h3 Happiness evolution
     canvas#myChart(width="auto" height="auto")
 </template>
 
@@ -65,12 +64,14 @@ export default {
         },
         options: {
           scales: {
-              xAxes: [{
-                  ticks: {
-                      display: false
-                  }
-              }]
+            xAxes: [{
+              ticks: {
+                  display: false
+              }
+            }]
           },
+          legend: false
+
         },
       });
     }

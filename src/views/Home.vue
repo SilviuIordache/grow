@@ -28,10 +28,10 @@
 </template>
 
 <script>
-import { getPillars } from '../mixins/getPillars.js';
+import { dbMixin }  from '../mixins/dbMixin.js';
 
 export default {
-  mixins: [getPillars],
+  mixins: [dbMixin],
   data() {
     return {
       pillars: [],

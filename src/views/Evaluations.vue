@@ -10,7 +10,9 @@
           button.btn.btn-primary.py-3(@click="startNewEvaluation()") START NEW EVALUATION
       .col-12.col-md-8
         .grow-card
-          Happiness-Graph(:evaluations="evaluations")
+          h3.mb-3 Happiness evolution
+          Happiness-Graph.mb-4(:evaluations="evaluations")
+          router-link(to="/detailedEvolution") View detailed
         
     .grow-card.mb-3
       .row
@@ -31,10 +33,10 @@
 import EvaluationCard from '../components/EvaluationCard.vue';
 import HappinessGraph from '../components/HappinessGraph.vue';
 
-import { getPillars } from '../mixins/getPillars.js';
+import { dbMixin } from '../mixins/dbMixin.js';
 
 export default {
-  mixins: [getPillars],
+  mixins: [dbMixin],
   components: { EvaluationCard, HappinessGraph },
   props: { userID: String },
   data() {
@@ -51,29 +53,7 @@ export default {
   methods: {
     startNewEvaluation() {
       this.$router.push({ path: '/evaluationQuiz' })
-    },
-    async getEvaluations() {
-      this.loading = true;
-
-      this.evaluations = [];
-      const docRef = await this.$db
-        .collection('evaluations')
-        .where('ownerID', '==', this.userID)
-        .orderBy("createdAt", 'desc');
-
-      const snapshot = await docRef.get();
-
-      snapshot.forEach(doc => {
-        let evaluation = {};
-        evaluation = doc.data();
-        evaluation.id = doc.id;
-
-        this.evaluations.push(evaluation);
-      });
-
-      this.loading = false;
-    },
-    
+    }
   },
 };
 </script>

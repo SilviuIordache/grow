@@ -34,13 +34,13 @@
 
 <script>
 import ListItem from '../components/ListItem.vue';
-import { getPillars } from '../mixins/getPillars.js';
+import { dbMixin } from '../mixins/dbMixin.js';
 
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
 export default {
-  mixins: [getPillars],
+  mixins: [dbMixin],
   components:{ ListItem },
   props: {
     userID: String
