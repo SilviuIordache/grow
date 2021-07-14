@@ -10,7 +10,7 @@
       .col-12.col-md-8
         .grow-card
           h3.mb-3 Happiness evolution
-          Happiness-Graph.mb-4(:evaluations="evaluations")
+          Happiness-Graph.mb-4(:details="false")
           .detailed-link-container.text-right
             router-link(to="/detailedEvolution") View detailed →
         

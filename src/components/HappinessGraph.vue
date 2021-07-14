@@ -1,32 +1,59 @@
 <template lang="pug">
-  .chart-container
-    canvas#myChart(width="auto" height="auto")
+  .row
+    .col-12.col-lg-2(v-if="details")
+      .happiness-checkbox
+        input(type='checkbox')
+        label.ml-2.mb-0 Happiness
+      .pillar-checkbox-container(v-for="(pillar, index) in pillars")
+        .option-container.d-flex.align-items-center.mt-4
+          input(type='checkbox' :value="pillar.id" v-model="checkedPillars")
+          label.ml-2.mb-0 {{ pillar.name }}
+    .col-12.col-lg-10
+      canvas#myChart(width="auto" height="auto")
 </template>
 
 <script>
 import { formattedDate } from '../mixins/formattedDate.js';
 import Chart from 'chart.js'
+import { dbMixin } from '../mixins/dbMixin.js';
 
 export default {
-  mixins: [formattedDate],
+  mixins: [formattedDate, dbMixin],
   props: {
-    evaluations: Array,
+    details: {
+      type: Boolean,
+      default: true
+    }
   },
   data() {
     return {
       pillarsData: [],
       evalRatings: [],
-      evalDates: []
+      evalDates: [],
+      checkedPillars: [],
+      dummy: false,
+      evaluations: [],
+      loading: false,
+      pillars: []
     }
   },
-  watch: {
-    evaluations: function () {
-      this.calculateChartData();
-      this.calculateChartLabels();
-      this.generateChart();
-    }
+  async mounted() {
+    await this.getAuthData();
+    await this.getPillars();
+    await this.getEvaluations();
+    this.calculateChartData();
+    this.calculateChartLabels();
+    this.generateChart();
+    this.setPillarsAsUnchecked();
   },
   methods: {
+    setPillarsAsUnchecked() {
+      this.pillars.forEach((pillar) => pillar.checked = true);
+    },
+    updatedGraphedPillars(index) {
+      // console.log(this.pillars[index].checked);
+      this.pillars[index].checked = !this.pillars[index].checked;
+    },
     calculateChartData() {
       for (let i = 0; i < this.evaluations.length; i++) {
         let ratingSum = 0;
