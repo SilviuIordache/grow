@@ -28,16 +28,13 @@ export default {
   },
   methods: {
     calculateChartData() {
-
-      // NEED TO RENAME THE EVALUATIONS AND LOCAL PILLARDATA VARIABLE TO AVOID CONFUSION
       for (let i = 0; i < this.evaluations.length; i++) {
         let ratingSum = 0;
 
         const pillars = this.evaluations[i].pillars
         pillars.forEach((pillar) => {
           // Calculate rating avg
-          const avg = parseFloat(pillar.rating, 10)
-          ratingSum += avg / pillars.length;
+          ratingSum += pillar.rating / pillars.length;
 
           // Add individual pillars data
             // check if pillar evaluation exists with this id
@@ -48,15 +45,13 @@ export default {
 
             if (pillarIndex === -1) {
             // if it doesn't exist, create it
-              let newRating = {
+              this.pillarsData.push({
                 id: pillar.id,
-                ratings: [parseFloat(pillar.rating, 10)]
-              }
-              this.pillarsData.push(newRating);
+                ratings: [pillar.rating]
+              });
             } else {
               // if it exists, add to the array
-              console.log(this.pillarsData[pillarIndex].ratings)
-              this.pillarsData[pillarIndex].ratings.push(parseFloat(pillar.rating, 10))
+              this.pillarsData[pillarIndex].ratings.push(pillar.rating)
             }
         });
         this.evalRatings.push(ratingSum.toFixed(1));
