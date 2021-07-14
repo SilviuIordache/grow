@@ -3,14 +3,15 @@
     .grow-card
       h3.mb-5 Happiness & Pillars evolution
       .row
-        .col-2
+        .col-12.col-lg-2
           .happiness-checkbox
-            input(type='checkbox' :checked="macarena" @click="macarena = !macarena")
+            input(type='checkbox')
             label.ml-2 Happiness
           .pillar-checkbox-container(v-for="(pillar, index) in pillars")
-            input(type='checkbox' :value="pillar.name" v-model="checkedPillars")
-            label.ml-2 {{ pillar.name }}
-        .col-10
+            .option-container.d-inline
+              input(type='checkbox' :value="pillar.id" v-model="checkedPillars")
+              label.ml-2 {{ pillar.name }}
+        .col-12.col-lg-10
           Happiness-Graph.mb-4(:evaluations="evaluations")
 </template>
 
@@ -27,7 +28,6 @@ export default {
   data() {
     return {
       checkedPillars: [],
-      macarena: true,
       dummy: false,
       evaluations: [],
       loading: false,
