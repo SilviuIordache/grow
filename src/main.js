@@ -10,6 +10,7 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 Vue.prototype.$db = db;
+Vue.prototype.$firebase = firebase
 
 const app = new Vue({
   el: '#app',

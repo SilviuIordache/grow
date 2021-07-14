@@ -5,11 +5,13 @@
 </template>
 
 <script>
-import firebase from 'firebase/app';
 import 'firebase/auth';
 import NavigationBar from './components/NavigationBar.vue';
+import { dbMixin } from './mixins/dbMixin.js';
+
 
 export default {
+  mixins: [dbMixin],
   name: 'App',
   components: {
     'navigation-bar': NavigationBar
@@ -24,17 +26,6 @@ export default {
   async mounted() {
     await this.getAuthData();
   },
-  methods: {
-    getAuthData() {
-      firebase.auth().onAuthStateChanged(user => {
-        this.loggedIn = !!user;
-        if (this.loggedIn) {
-          this.username = user.displayName;
-          this.userID = user.uid;
-        }
-      })
-    }
-  }
 }
 </script>
 

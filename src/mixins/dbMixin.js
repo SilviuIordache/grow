@@ -1,8 +1,17 @@
 export const dbMixin = {
   methods: {
+    async getAuthData() {
+      this.$firebase.auth().onAuthStateChanged(user => {
+        this.loggedIn = !!user;
+        if (this.loggedIn) {
+          this.username = user.displayName;
+          this.userID = user.uid;
+        }
+      })
+    },
     async getPillars() {
       this.loading = true;
-      const docRef = await this.$db.collection('pillars')
+      const docRef = await this.$db.collection('pillars');
 
       const snapshot = await docRef.get();
 
