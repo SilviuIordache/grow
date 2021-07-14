@@ -6,11 +6,11 @@
         .col-12.col-lg-2
           .happiness-checkbox
             input(type='checkbox')
-            label.ml-2 Happiness
+            label.ml-2.mb-0 Happiness
           .pillar-checkbox-container(v-for="(pillar, index) in pillars")
-            .option-container.d-inline
+            .option-container.d-flex.align-items-center.mt-4
               input(type='checkbox' :value="pillar.id" v-model="checkedPillars")
-              label.ml-2 {{ pillar.name }}
+              label.ml-2.mb-0 {{ pillar.name }}
         .col-12.col-lg-10
           Happiness-Graph.mb-4(:evaluations="evaluations")
 </template>
