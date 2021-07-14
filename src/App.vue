@@ -10,6 +10,7 @@ import 'firebase/auth';
 import NavigationBar from './components/NavigationBar.vue';
 
 export default {
+  name: 'App',
   components: {
     'navigation-bar': NavigationBar
   },

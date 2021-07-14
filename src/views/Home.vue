@@ -31,6 +31,7 @@
 import { dbMixin }  from '../mixins/dbMixin.js';
 
 export default {
+  name: 'Home',
   mixins: [dbMixin],
   data() {
     return {

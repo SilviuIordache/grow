@@ -33,8 +33,8 @@
             tbody
               tr(v-for="pillar in evaluation.pillars")
                 th(scope='row') 
-                  i.fa-xs(:class="getPillar(pillar.pillarId).icon" :style="{ color: getPillar(pillar.pillarId).color}")
-                  span.ml-3 {{ getPillar(pillar.pillarId).name }}
+                  i.fa-xs(:class="getPillar(pillar.id).icon" :style="{ color: getPillar(pillar.id).color}")
+                  span.ml-3 {{ getPillar(pillar.id).name }}
                 td {{ pillar.rating }}
                 td {{ pillar.notes }}
 </template>
@@ -47,6 +47,7 @@ import { evaluationMixin } from '../mixins/evaluationMixin.js';
 import { dbMixin } from '../mixins/dbMixin.js';
 
 export default {
+  name: 'EvaluationDetails',
   components: { EvaluationGraphWheel },
   props: { userID: String },
   mixins: [formattedDate, evaluationMixin, dbMixin],
