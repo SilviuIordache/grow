@@ -90,7 +90,7 @@ export default {
       this.evaluation.push({
         id: this.pillars[this.currentQuestion].id,
         notes: this.notes,
-        rating: this.rating,
+        rating: parseFloat(this.rating, 10)
       });
     },
     resetForm() {
