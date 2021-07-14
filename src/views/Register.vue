@@ -26,7 +26,8 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 
 export default {
-   data() {
+  name: 'Register',
+    data() {
     return {
       username: '',
       email: '',

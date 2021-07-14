@@ -36,6 +36,7 @@ import HappinessGraph from '../components/HappinessGraph.vue';
 import { dbMixin } from '../mixins/dbMixin.js';
 
 export default {
+  name: 'Evaluations',
   mixins: [dbMixin],
   components: { EvaluationCard, HappinessGraph },
   props: { userID: String },

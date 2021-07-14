@@ -10,7 +10,7 @@ export const evaluationMixin = {
       if (this.evaluation.pillars) {
         let ratingSum = 0;
         this.evaluation.pillars.forEach((pillar) => {
-          ratingSum += parseInt(pillar.rating, 10);
+          ratingSum += parseFloat(pillar.rating, 10);
         });
 
         const avg = ratingSum/ this.evaluation.pillars.length;

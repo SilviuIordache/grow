@@ -38,6 +38,7 @@ import { dbMixin } from '../mixins/dbMixin.js';
 import firebase from 'firebase/app';
 
 export default {
+  name: 'EvaluationQuiz',
   mixins: [dbMixin],
   props: { userID: String },
   data() {
@@ -87,7 +88,7 @@ export default {
     },
     addPillarEvaluation() {
       this.evaluation.push({
-        pillarId: this.pillars[this.currentQuestion].id,
+        id: this.pillars[this.currentQuestion].id,
         notes: this.notes,
         rating: this.rating,
       });

@@ -23,12 +23,13 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 
 export default {
-   data() {
-    return {
-      email: '',
-      password: '',
-      error: ''
-    }
+  name: 'Login',
+  data() {
+  return {
+    email: '',
+    password: '',
+    error: ''
+  }
   },
   methods: {
     async login() {

@@ -33,6 +33,7 @@ import Chart from 'chart.js';
 import pillarStorage from '../utils/pillarStorage.js';
 
 export default {
+  name: 'Results',
   data() {
     return {
       pillars: [],
