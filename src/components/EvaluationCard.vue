@@ -3,7 +3,7 @@
     .left-container
       .pillar-scores-container.d-flex
         .pillar-score.mr-3.mr-md-4(v-for="pillar in evaluation.pillars" )
-          .inner-container(:class="")
+          .inner-container.text-center
             i.fa-xs(:class="getPillar(pillar.id).icon")
             p.text-muted {{ pillar.rating }}
       p.text-muted.mb-0 {{ formattedDate(evaluation.createdAt) }}
