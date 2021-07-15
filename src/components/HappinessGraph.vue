@@ -2,11 +2,11 @@
   .row
     .col-12.col-lg-2(v-if="details")
       .happiness-checkbox
-        input(type='checkbox')
+        input(type='checkbox' checked)
         label.ml-2.mb-0 Happiness
       .pillar-checkbox-container(v-for="(pillar, index) in pillars")
         .option-container.d-flex.align-items-center.mt-4
-          input(type='checkbox' :value="pillar.id" v-model="checkedPillars")
+          input(type='checkbox' :value="pillar" v-model="checkedPillars" @click="toggleDataSet(pillar)")
           label.ml-2.mb-0 {{ pillar.name }}
     .col-12.col-lg-10
       canvas#myChart(width="auto" height="auto")
@@ -27,6 +27,7 @@ export default {
   },
   data() {
     return {
+      chart: {},
       pillarsData: [],
       evalRatings: [],
       evalDates: [],
@@ -49,10 +50,6 @@ export default {
   methods: {
     setPillarsAsUnchecked() {
       this.pillars.forEach((pillar) => pillar.checked = true);
-    },
-    updatedGraphedPillars(index) {
-      // console.log(this.pillars[index].checked);
-      this.pillars[index].checked = !this.pillars[index].checked;
     },
     calculateChartData() {
       for (let i = 0; i < this.evaluations.length; i++) {
@@ -82,7 +79,6 @@ export default {
             }
         });
         this.evalRatings.push(ratingSum.toFixed(1));
-
       }
       this.evalRatings.reverse();
     },
@@ -95,7 +91,7 @@ export default {
     },
     generateChart() {
       let ctx = document.getElementById('myChart');
-      var chart = new Chart(ctx, {
+      this.chart = new Chart(ctx, {
         // The type of chart we want to create
         type: 'line',
         // The data for our dataset
@@ -120,6 +116,31 @@ export default {
           legend: false
         },
       });
+    },
+    toggleDataSet(pillar) {
+      const data = this.pillarsData.find(data => data.id === pillar.id);
+      if (this.checkedPillars.some(checkedPillar => checkedPillar.id === pillar.id)) {
+        this.removeData(pillar)
+      } else {
+        this.addData(pillar, data); 
+      }
+    },
+    addData(pillar, data) {
+      this.chart.data.datasets.push({
+        id: pillar.id,
+        backgroundColor: pillar.color,
+        borderColor: pillar.color,
+        data: data.ratings,
+        fill: false
+      });
+      this.chart.update();
+    },
+    removeData(pillar) {
+      const index = this.chart.data.datasets.findIndex( data => data.id === pillar.id)
+
+      this.chart.data.datasets.splice(index, 1)
+
+      this.chart.update();
     }
   }
 }
