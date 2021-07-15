@@ -7,7 +7,9 @@
       .pillar-checkbox-container(v-for="(pillar, index) in pillars")
         .option-container.d-flex.align-items-center.mt-4
           input(type='checkbox' :value="pillar" v-model="checkedPillars" @click="toggleDataSet(pillar)")
-          label.ml-2.mb-0 {{ pillar.name }}
+          label.ml-2.mb-0(:style="{ color: pillar.color}") {{ pillar.name }}
+      .remove-all
+        button.btn.btn-outline-danger(@click="removeGraphData()") Toggle pillars off
     .col-12.col-lg-10
       canvas#myChart(width="auto" height="auto")
 </template>
@@ -35,7 +37,7 @@ export default {
       dummy: false,
       evaluations: [],
       loading: false,
-      pillars: []
+      pillars: [],
     }
   },
   async mounted() {
@@ -140,6 +142,16 @@ export default {
 
       this.chart.data.datasets.splice(index, 1)
 
+      this.chart.update();
+    },
+    removeGraphData() {
+      this.chart.data.datasets = [{
+        label: 'Happiness',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: this.evalRatings,
+        fill: false
+      }];
       this.chart.update();
     }
   }
