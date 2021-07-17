@@ -10,8 +10,8 @@
             router-link.nav-link(to="/evaluations" :class="{ 'active': $route.name === 'evaluation' }").
               Evaluations
           li.nav-item
-            router-link.nav-link(to="/results" :class="{ 'active': $route.name === 'results' }").
-              Results
+            router-link.nav-link(to="/pillars" :class="{ 'active': $route.name === 'pillars' }").
+              Pillars
           li.nav-item
             router-link.nav-link(to="/goals" :class="{ 'active': $route.name === 'goals' }").
               Goals

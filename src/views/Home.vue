@@ -25,6 +25,9 @@
       .col-12
         .evaluation-container.mt-5.text-center
           button.btn.btn-primary.btn-lg(role="button" type="button" @click="startEvaluation()") Start evaluation
+    .row
+      .col-12
+        router-link(to="/pillars") Read more about the pillars of life
 </template>
 
 <script>

@@ -11,6 +11,7 @@ import EvaluationQuiz from '../views/EvaluationQuiz.vue';
 import Results from '../views/Results.vue';
 import Goals from '../views/Goals.vue';
 import Profile from '../views/Profile.vue';
+import Pillars from '../views/Pillars.vue';
 
 Vue.use(VueRouter);
 
@@ -46,6 +47,11 @@ const router = new VueRouter({
       path: '/results',
       name: 'results',
       component: Results
+    },
+    {
+      path: '/pillars',
+      name: 'pillars',
+      component: Pillars
     },
     {
       path: '/goals',
