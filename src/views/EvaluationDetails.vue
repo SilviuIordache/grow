@@ -7,15 +7,18 @@
       .col-12.col-md-4
         .grow-card
           .title-container.mb-4
-            h3 Evaluation details
+            h3 Evaluation Details
           .bottom-container.d-flex.justify-content-between
             .left-container
               .text-container.d-flex.flex-column.justify-content-around
                 p.mb-0 ID: {{ id }}
                 p.mb-0 Created at: {{ formattedDate(evaluation.createdAt) }}
-              .score-container.avg-rating.mt-4(:class="`${this.ratingColorClass}`")
-                i(:class="`${this.emoji}`")
-                p.mb-0 {{ evalAverageRating() }}
+              .score-container.mt-5.d-flex.justify-content-center
+                .text-container.d-flex.align-items-center.text-muted.mr-4.
+                  Avg rating:
+                .icon-container.text-center.d-flex.align-items-center(:class="`${this.ratingColorClass}`")
+                  i.mr-2(:class="`${this.emoji}`")
+                  p.mb-0 {{ evalAverageRating() }}
       .col-12.col-md-8
         .grow-card
           h3.mb-3 Evaluation wheel chart
@@ -93,5 +96,5 @@ export default {
   .container
     color black
     .score-container
-      font-size 3rem
+      font-size 2rem
 </style>
