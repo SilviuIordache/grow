@@ -29,7 +29,7 @@ app.use('/', express.static(path.join(__dirname, './build')))
 const port = 8001;
 const hostname = 'localhost';
 
-app.listen(port, hostname, () => {
+app.listen(port, () => {
  console.log(`FrontEnd server started, listening on port ${port}`);
- console.log(`http://${hostname}:${port}`)
+//  console.log(`http://${hostname}:${port}`)
 })
