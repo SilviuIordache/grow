@@ -1,16 +1,21 @@
 <template lang="pug">
-  .evaluation-card.grow-card.grow-card-interactive.d-flex.justify-content-between.p-4(v-if="evaluation.pillars" @click="goToDetailedEvaluationView()")
-    .left-container
-      .pillar-scores-container.d-flex
-        .pillar-score.mr-3.mr-md-4(v-for="pillar in evaluation.pillars" )
-          .inner-container.text-center
-            i.fa-xs(:class="getPillar(pillar.id).icon")
-            p.text-muted {{ pillar.rating }}
-      p.text-muted.mb-0 {{ formattedDate(evaluation.createdAt) }}
-    .right-container.d-flex.align-items-center
-      .inner-container.avg-rating(:class="`${this.ratingColorClass}`")
-        i(:class="`${this.emoji}`")
-        p.mb-0 {{ evalAverageRating() }}
+  .container.grow-card.grow-card-interactive.p-4(v-if="evaluation.pillars" @click="goToDetailedEvaluationView()")
+    .row
+      .col-6.mb-3
+        p.mb-0 Evaluation Score
+        .inner-container.avg-rating.d-flex.align-items-center(:class="`${this.ratingColorClass}`")
+          i.mr-1(:class="`${this.emoji}`")
+          p.mb-0 {{ evalAverageRating() }}
+      .col-6
+        p.mb-0 Date
+        p.text-muted.mb-0.mt-2 {{ formattedDate(evaluation.createdAt) }}
+    .row
+      .col-12
+        p Pillar scores
+      .col-3.col-lg-1.pillar-score(v-for="pillar in evaluation.pillars" )
+        .inner-container.d-flex.flex-column.align-items-center
+          i.fa-xs(:class="getPillar(pillar.id).icon")
+          p.text-muted {{ pillar.rating }}
 </template>
 
 <script>
@@ -36,3 +41,8 @@ export default {
   }
 };
 </script>
+
+<style lang="stylus" scoped>
+  .pillar-score
+    width 2rem
+</style>
