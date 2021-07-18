@@ -14,10 +14,14 @@
             label(for='passInput') Password
             input#passInput.form-control(type='password' v-model="password" placeholder='Password')
 
+          
           button.mt-4.btn.btn-primary(type='submit') Register
+
 
           .error(v-if="error") 
             p {{ error }}
+          .login-link-container.mt-4
+            router-link(to="/login") Already have an account? Log In
 
 </template>
 

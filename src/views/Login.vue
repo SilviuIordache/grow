@@ -15,6 +15,8 @@
 
           .error(v-if="error") 
             p {{ error }}
+          .register-link-container.mt-4
+            router-link(to="/register") New user? Click here to register
 
 </template>
 

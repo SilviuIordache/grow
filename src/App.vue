@@ -1,7 +1,7 @@
 <template lang="pug">
   main
     navigation-bar(:username="username" :loggedIn="loggedIn" )
-    router-view(:userID="userID")
+    router-view(:userID="userID" :loggedIn="loggedIn")
 </template>
 
 <script>

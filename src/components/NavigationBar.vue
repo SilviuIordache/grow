@@ -6,13 +6,13 @@
           li.nav-item
             router-link.nav-link(to="/" :class="{ 'active': $route.name === 'home' }").
               Home
-          li.nav-item
+          li.nav-item(v-if="loggedIn")
             router-link.nav-link(to="/evaluations" :class="{ 'active': $route.name === 'evaluation' }").
               Evaluations
           li.nav-item
             router-link.nav-link(to="/pillars" :class="{ 'active': $route.name === 'pillars' }").
               Pillars
-          li.nav-item
+          li.nav-item(v-if="loggedIn")
             router-link.nav-link(to="/goals" :class="{ 'active': $route.name === 'goals' }").
               Goals
         ul.navbar-nav.ml-auto(v-if="loggedIn")

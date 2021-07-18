@@ -24,7 +24,10 @@
     .row
       .col-12
         .evaluation-container.mt-5.text-center
-          button.btn.btn-primary.btn-lg(role="button" type="button" @click="startEvaluation()") Start evaluation
+          button.btn.btn-primary.btn-lg(v-if="loggedIn" role="button" type="button" @click="startEvaluation()").
+            Start evaluation
+          button.btn.btn-primary.btn-lg(v-else role="button" type="button" @click="goToRegister()").
+            Register/Login to create evaluations
     .row
       .col-12
         router-link(to="/pillars") Read more about the pillars of life
@@ -36,6 +39,12 @@ import { dbMixin }  from '../mixins/dbMixin.js';
 export default {
   name: 'Home',
   mixins: [dbMixin],
+  props: {
+    loggedIn: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       pillars: [],
@@ -48,6 +57,9 @@ export default {
   methods: {
     startEvaluation() {
       this.$router.push({ path: '/evaluationQuiz' })
+    },
+    goToRegister() {
+      this.$router.push({ path: '/register' })
     }
   }
 };
