@@ -15,7 +15,7 @@
                 p.mb-0 Created at: {{ formattedDate(evaluation.createdAt) }}
               .score-container.mt-5.d-flex.justify-content-center
                 .text-container.d-flex.align-items-center.text-muted.mr-4.
-                  Avg rating:
+                  Happiness score:
                 .icon-container.text-center.d-flex.align-items-center(:class="`${this.ratingColorClass}`")
                   i.mr-2(:class="`${this.emoji}`")
                   p.mb-0 {{ evalAverageRating() }}
@@ -96,5 +96,8 @@ export default {
   .container
     color black
     .score-container
-      font-size 2rem
+        .text-container
+          font-size 1rem
+        .icon-container
+          font-size 2rem
 </style>
