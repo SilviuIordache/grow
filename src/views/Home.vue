@@ -32,9 +32,10 @@
             p or
             button.btn.btn-light.btn-lg(role="button" type="button" @click="loginWithDemo()").
               View DemoAccount
-    .row
-      .col-12
-        router-link(to="/pillars") Read more about the pillars of life
+    .row.mt-5
+      .col-12.d-flex.justify-content-center
+        .d-block
+          router-link(to="/pillars") Read more about the pillars of life
 </template>
 
 <script>
