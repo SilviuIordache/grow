@@ -26,10 +26,6 @@ app.use(history({ history: 'src/index.html' }));
 // file server
 app.use('/', express.static(path.join(__dirname, './build')))
 
-const port = 8001;
-const hostname = 'localhost';
-
-app.listen(port, () => {
- console.log(`FrontEnd server started, listening on port ${port}`);
-//  console.log(`http://${hostname}:${port}`)
-})
+app.listen(process.env.PORT || 8001, () => {
+  console.log('Server is running');
+});
