@@ -26,8 +26,12 @@
         .evaluation-container.mt-5.text-center
           button.btn.btn-primary.btn-lg(v-if="loggedIn" role="button" type="button" @click="startEvaluation()").
             Start evaluation
-          button.btn.btn-primary.btn-lg(v-else role="button" type="button" @click="goToRegister()").
-            Register/Login to create evaluations
+          .unlogged-actions-container(v-else)
+            button.btn.btn-primary.btn-lg(role="button" type="button" @click="goToRegister()").
+              Register/Login to create evaluations
+            p or
+            button.btn.btn-light.btn-lg(role="button" type="button" @click="loginWithDemo()").
+              View DemoAccount
     .row
       .col-12
         router-link(to="/pillars") Read more about the pillars of life
@@ -35,6 +39,8 @@
 
 <script>
 import { dbMixin }  from '../mixins/dbMixin.js';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 export default {
   name: 'Home',
@@ -60,6 +66,15 @@ export default {
     },
     goToRegister() {
       this.$router.push({ path: '/register' })
+    },
+    async loginWithDemo() {
+      try {
+        await firebase.auth().signInWithEmailAndPassword('demo@growhappy.com', '123456');
+        this.$router.push('/');
+      } catch (err) {
+        this.error = err.message;
+        console.log(err);
+      }
     }
   }
 };
