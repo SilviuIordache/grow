@@ -1,10 +1,14 @@
 <template lang="pug">
   .container
-    .row
+    .row.grow-card
       .col-12
-        h1 Profile
-        p username: {{ username }}
-        p email: {{ email }}
+        h1.mb-5 Profile
+        p
+          strong username:
+          span.ml-1 {{ username }}
+        p
+          strong email: 
+          span.ml-1 {{ email }}
 
 </template>
 
