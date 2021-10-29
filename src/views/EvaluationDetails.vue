@@ -41,7 +41,9 @@
                   i.fa-xs(:class="getPillar(pillar.id).icon" :style="{ color: getPillar(pillar.id).color}")
                   span.ml-3 {{ getPillar(pillar.id).name }}
                 td {{ pillar.rating }}
-                td {{ pillar.notes }}
+                td
+                  span(v-if="pillar.notes") {{ pillar.notes }}
+                  span(v-else) -
 </template>
 
 <script>
