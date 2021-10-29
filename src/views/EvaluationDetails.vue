@@ -19,6 +19,8 @@
                 .icon-container.text-center.d-flex.align-items-center(:class="`${this.ratingColorClass}`")
                   i.mr-2(:class="`${this.emoji}`")
                   p.mb-0 {{ evalAverageRating() }}
+              .options-container.mt-5
+                button.btn.btn-outline-danger(@click="deleteEvaluation()") Delete evaluation
       .col-12.col-md-8
         .grow-card
           h3.mb-3 Evaluation wheel chart
@@ -87,6 +89,18 @@ export default {
     },
     getPillar(id) {
       return this.pillars.find(pillar => pillar.id === id);
+    },
+    async deleteEvaluation() {
+      const confirmDelete = confirm('Are you sure you want to delete this evaluation?');
+
+      if (confirmDelete) {
+        try {
+          await this.$db.collection('evaluations').doc(this.id).delete();
+          this.$router.push('/evaluations');
+        } catch (err) {
+          console.log(err);
+        }
+      }
     }
   }
 };
