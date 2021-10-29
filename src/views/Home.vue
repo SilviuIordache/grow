@@ -18,7 +18,7 @@
 
     .row(v-else)
       .col-12.col-sm-6.col-md-4.col-lg-3.my-3(v-for="pillar in pillars")
-        .grow-card.p-4
+        .p-2
           i.mr-2.fa-lg(:class="pillar.icon" :style="{ color: pillar.color}")
           span {{ pillar.name }}
     .row
