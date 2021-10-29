@@ -17,7 +17,7 @@
     .grow-card.mb-3
       .row
         .col-12.mb-4
-          h3 Your evaluations
+          h3 Your evaluations ({{ evaluations.length }})
       .row(v-if="loading")
         .col-12.col-sm-3.mb-4.
             Loading...
