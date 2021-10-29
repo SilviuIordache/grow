@@ -8,7 +8,7 @@
         .option-container.d-flex.align-items-center.mt-4
           input(type='checkbox' :value="pillar" v-model="checkedPillars" @click="toggleDataSet(pillar)")
           label.ml-2.mb-0(:style="{ color: pillar.color}") {{ pillar.name }}
-      .remove-all
+      .buttons-container.mt-5
         button.btn.btn-outline-danger(@click="removeGraphData()") Toggle pillars off
     .col-12.col-lg-10
       canvas#myChart(width="auto" height="auto")
