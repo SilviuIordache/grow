@@ -28,11 +28,15 @@ export default {
   },
   methods: {
     async deleteGoal() {
-      try {
-        await this.$db.collection('goals').doc(this.goal.id).delete();
-        this.$parent.$emit('goal:deleted')
-      } catch (err) {
-        console.log(err);
+      const confirmDelete = confirm('Are you sure you want to delete this goal?');
+
+      if (confirmDelete) {
+        try {
+          await this.$db.collection('goals').doc(this.goal.id).delete();
+          this.$parent.$emit('goal:deleted')
+        } catch (err) {
+          console.log(err);
+        }
       }
     },
     async toggleGoalCompletion() {
