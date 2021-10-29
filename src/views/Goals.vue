@@ -8,7 +8,6 @@
             option(value="")  --- choose a pillar ---
             option(v-for="pillar in pillars" :value="pillar.name") {{ pillar.name }}
           i.ml-4.fa-3x(v-if="pillars.length > 0" :class="pillars[selectedPillar].icon" :style="{ color: pillars[selectedPillar].color}")
-
     .row
       .col-12.col-md-6
         .grow-card
@@ -73,9 +72,6 @@ export default {
     pillarCategory: function(val) {
       this.selectedPillar = this.pillars.findIndex((pillar) => pillar.name === this.pillarCategory)
     },
-    userID: async function() {
-      await this.getGoals();
-    }
   },
   methods: {
     async addGoal() {
